@@ -1,0 +1,31 @@
+<md-dialog aria-label="Users conv" class="chat-dialog">
+  <form ng-cloak>
+        <md-button class="md-icon-button" ng-click="cancel()" style="right: 0; position: absolute;">
+          <md-icon class="material-icons" role="button" tabindex="0">close</md-icon>
+        </md-button>
+    <md-dialog-content>
+      <div class="md-dialog-content" style="padding: 20px 20px 20px 20px">
+        <h2 style="margin-top: 0; margin-bottom: 10px">Current users</h2>
+        <md-list class="fixedRows">
+            <md-list-item class="md-2-line chat-list-item" ng-repeat="(index, contact) in conv.users">
+                <img ng-if="contact.main_image" ng-src="https://s3.eu-central-1.amazonaws.com/socialhive-prod/upload/users/preview/{{contact.main_image}}" class="md-avatar user-list-item" alt="{{contact.first_name}}" />
+                <img ng-if="!contact.main_image" ng-src="./app/static/img/placeholder-user.png" class="md-avatar user-list-item" alt="{{contact.first_name}}" />
+                <div class="md-list-item-text compact" class="user-list-item">
+                    <h3>{{contact.first_name}} {{contact.last_name}}</h3>
+                </div>
+                <div class="user-list-item">
+                    <md-icon class="material-icons remove-user-btn" ng-click="kick(index, contact)">clear</md-icon>
+                </div>
+            </md-list-item>
+        </md-list>
+
+        <h2 style="margin-top: 0;">Add users</h2>
+        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" placeholder="New conversation" md-items="item in querySearch(searchText)" md-item-text="item.first_name + ' ' + item.last_name" md-selected-item-change="selectedItemChange(item)"
+            md-menu-class="new-conversation-list" style="display: inline-block; vertical-align: middle;">
+            <span md-highlight-text="searchText">{{item.first_name + ' ' + item.last_name}}</span>
+        </md-autocomplete>
+        <md-icon class="material-icons remove-user-btn" ng-click="addUser()" style="display: inline-block; vertical-align: middle;">add</md-icon>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

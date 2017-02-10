@@ -1,0 +1,37 @@
+<div class="login-page" style="height: 100%;">
+    <style>
+        .login-page .login-header:before {
+            background: url('./app/static/img/login-back.jpeg') no-repeat top center;
+            background-size: cover;
+            background-position: 50% 35%;
+            background-repeat: no-repeat no-repeat;
+        }
+    </style>
+    <div class="login-header" style="height: 100%">
+        <div style="padding: 50px; text-align: center; position: relative;">
+            <div>
+                <div class="sh-moto-text">Lost your password ?</div>
+                <div class="sh-moto-text" style="font-size: 28px;">No problem.</div>
+            </div>
+            <div style="text-align: -webkit-center">
+                <div class="sh-login-box" style="margin-top:50px;">
+                    <div layout="column" style="text-align: initial;">
+                        <md-input-container>
+                            <label>Email</label>
+                            <input ng-model="new.email" required type="email" required>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Repeat Email</label>
+                            <input ng-model="emailCheck" ng-pattern="new.email" type="email" required>
+                        </md-input-container>
+                    </div>
+                    <div layout layout-align="center center">
+                        <md-button type="submit" class="md-raised md-primary signup-validate">
+                            Retrieve
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

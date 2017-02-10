@@ -1,0 +1,1102 @@
+cite {
+    font-size: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.sh-badges {
+    width: 70px;
+    height: 70px;
+}
+
+.sh-comunities {
+    width: 70px;
+    height: 70px;
+    /*border-radius: 50%;*/
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+
+/*
+PROFILE PAGE DESIGN
+*/
+
+.profile-page {}
+
+.profile-page .profile-header {
+    background-color: #1b2023;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-page .profile-header:before {
+    content: ' ';
+    height: 100%;
+    opacity: .3;
+    position: absolute;
+    width: 100%;
+}
+
+.profile-page .box-title-wrapper {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.profile-page .box-title-wrapper .box-title {
+    font-size: 17px;
+    text-transform: uppercase;
+    line-height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.profile-page .profile-header .profile-header-infos {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 50px;
+    z-index: 9;
+}
+
+.profile-page .profile-header .profile-header-infos .profile-picture {
+    border-radius: 50%;
+    border: 4px solid #ECEFF1;
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.profile-page .profile-header .profile-header-infos .sponsor-indic {
+    display: inline cursor: default;
+    border-radius: 16px;
+    background-color: #ff9800;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 32px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+    font-size: 16px;
+}
+
+.profile-page .profile-header .profile-header-infos .profile-special-btn {
+    top: 10px;
+    position: absolute;
+    background: #ff9800;
+    color: white;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile-page .profile-header .profile-header-infos .profile-special-btn:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page .profile-header .profile-header-infos .profile-special-btn.edit-profile {
+    left: 10px;
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos {
+    color: #fff;
+    display: inline-block;
+    position: relative;
+    margin-left: 15px;
+    padding-left: 10px;
+    width: calc(100% - 100px);
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .user-name {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .user-description {
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .user-experience {
+    margin-bottom: 10px;
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .user-level {
+    cursor: default;
+    border-radius: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 32px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, .3);
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .experience-progress {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+md-progress-linear {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 5px;
+    margin-bottom: 5px !important;
+}
+
+md-progress-linear .md-container {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 5px;
+    padding: 1px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, .3);
+    -webkit-transform: translate(0, 0) scale(1, 1);
+    transform: translate(0, 0) scale(1, 1);
+}
+
+md-progress-linear .md-container .md-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7px;
+}
+
+md-progress-linear.md-default-theme .md-container, md-progress-linear .md-container {
+    background: none;
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .user-action {
+    background-color: rgba(179, 179, 179, 0.9);
+    float: left;
+    border-radius: 2px;
+    font-size: 13px;
+    margin-bottom: 7px;
+    padding: 9px 15px 9px 15px;
+    text-align: center;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin-right: 7px;
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .user-action .add-friend-icn {
+    font-size: 12px;
+    height: 12px;
+    line-height: 12px;
+    color: white;
+    width: 12px;
+    min-width: 12px;
+    min-height: 12px;
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .user-action:hover {
+    background-color: #ff9800;
+    color: #000;
+}
+
+.profile-page .profile-header .profile-header-infos .user-infos .user-action:hover .add-friend-icn {
+    color: #000;
+}
+
+.profile-page .profile-header .profile-header-infos .user-stats {
+    color: #fff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    padding: 25px;
+    position: relative;
+}
+
+.profile-page .profile-header .profile-header-infos .user-stats .user-stat {
+    background-color: rgba(0, 0, 0, 0.30);
+    border-radius: 2px;
+    font-size: 12px;
+    margin-bottom: 7px;
+    padding: 9px;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    display: block;
+    text-transform: capitalize;
+}
+
+.profile-page .profile-header .profile-header-infos .user-stats .user-stat:hover {
+    background-color: #ff9800;
+    color: #000;
+}
+
+.profile-page md-tabs .md-tab {
+    color: #000;
+}
+
+.profile-page md-tabs .md-active span {
+    color: #ff9800;
+}
+
+.profile-page md-tabs md-ink-bar {
+    color: #ff9800;
+    background-color: #ff9800;
+}
+
+.profile-content {
+    padding-bottom: 30px;
+}
+
+@media screen and (min-width: 960px) {
+    .profile-content {
+        padding-left: 10em;
+        padding-right: 10em;
+    }
+}
+
+.user-friend-list {
+    position: relative;
+}
+
+.user-friend-list .user-name {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    /*width: 100%;*/
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    -webkit-transition: 1.2s all ease;
+    -transition: 1.2s all ease;
+    transition: 1.2s all ease;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: none;
+}
+
+.user-friend-list .top-left-button.delete-need {
+    top: -10px;
+    left: -10px;
+    width: 10px;
+    height: 10px;
+    min-height: 10px;
+    min-width: 10px;
+    font-size: 10px;
+    line-height: 10px;
+    background-color: rgb(250, 128, 114);
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    z-index: 300;
+}
+
+.user-friend-list .user {
+    border-radius: 50%;
+}
+
+.user-friend-list .user:hover .user-name {
+    font-size: 16px;
+    display: block;
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.user-friend-list .user:hover {
+    background-color: #000;
+}
+
+.user-friend-list .user:hover img {
+    opacity: 0.4;
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.user-friend-list .user img {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.user-pictures-list {
+    position: relative;
+    margin: 16px;
+}
+
+.user-pictures-list .user {
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.user-pictures-list .user:hover img {
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.user-pictures-list .user img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.profile-badges-columns {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.profile-badges-columns .user-badges-box-title .user-badges-icon, .user-friends-badges .user-badges-box-title .user-badges-icon {
+    height: 18px;
+    width: 18px;
+    font-size: 18px;
+    margin-right: 5px;
+    float: left;
+}
+
+.profile-badges-columns .user-badges-box-title .user-badge-title, .user-friends-badges .user-badges-box-title .user-badges-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 18px;
+}
+
+.profile-badges-columns .user-stats {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    margin: 10px;
+    position: relative;
+    padding: 15px;
+    width: 30%;
+}
+
+.profile-badges-columns .user-stats .canvas-holder {
+    padding: 15px;
+    position: relative;
+}
+
+.profile-badges-columns .user-stats .chart-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    font-size: 23px;
+}
+
+.profile-badges-columns .user-badges {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    margin: 10px;
+    padding: 15px;
+    width: 70%;
+    position: relative;
+}
+
+.profile-badges-columns .user-badges .badge {
+    opacity: 0.3;
+    cursor: not-allowed !important;
+}
+
+.profile-badges-columns .user-badges .badge.gained {
+    opacity: 1;
+    cursor: default !important;
+}
+
+.profile-badges-columns .user-badges .badges-list-grid {
+    position: relative;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.profile-badges-columns .user-badges .badges-list-grid .badge {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.user-badges .badges-list-grid figure {
+    overflow: hidden;
+}
+
+.user-badges .badges-list-grid figure::before {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    z-index: 2;
+    display: block;
+    content: '';
+    width: 50%;
+    height: 100%;
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .5) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .5) 100%);
+    -webkit-transform: skewX(-25deg);
+    transform: skewX(-25deg);
+}
+
+.user-badges .badges-list-grid figure:hover::before {
+    -webkit-animation: shine 1s;
+    animation: shine 1s;
+}
+
+@-webkit-keyframes shine {
+    100% {
+        left: 125%;
+    }
+}
+
+@keyframes shine {
+    100% {
+        left: 125%;
+    }
+}
+
+.user-friends-badges {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    position: relative;
+    padding: 15px;
+    margin: 10px;
+}
+
+.user-friends-badges .friend-list {}
+
+.user-friends-badges .friend-list .friend-card {}
+
+.user-friends-badges .friend-list .friend-card .user-avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.profile-content .post-box {
+    text-align: center;
+    border-radius: 2px;
+    background-color: white;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.profile-content .post-box img {
+    max-width: 100%;
+    text-align: center;
+}
+
+.profile-content .posts-actions {
+    overflow: hidden;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    float: right;
+}
+
+.profile-content .posts-actions>li {
+    display: block;
+    float: left;
+    list-style: none;
+    margin-left: 8px;
+}
+
+.profile-content .posts-actions .post-button {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    background: #FFF;
+    font-size: 14px;
+    padding: 7px 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-content .posts-actions .post-button:hover {
+    background: #e6e6e6;
+    border-color: #e6e6e6;
+}
+
+.profile-content .posts-actions .post-button:hover .material-icons {
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    color: #ff9800;
+}
+
+.profile-content .posts-actions .post-button .material-icons {
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    color: #b3b3b3;
+}
+
+.profile-content .events-list {
+    position: relative;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.profile-content .event-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    overflow: hidden;
+    background-color: #000;
+    text-align: center;
+}
+
+.profile-content .event-card .event-infos {
+    color: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    /*top: 40%;*/
+    font-size: 20px;
+}
+
+.profile-content .event-card .event-icon {
+    color: #ff9800;
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-content .event-card .event-title {
+    margin-bottom: 10px;
+}
+
+.profile-content .event-card .event-type {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.profile-content .event-card .event-date {
+    font-size: 14px;
+}
+
+.profile-content .event-card:hover img {
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.profile-content .event-card img {
+    display: block;
+    opacity: 0.3;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+}
+
+.profile-content .event-card .select-event {
+    right: 0;
+    bottom: 0;
+    color: #546E7A;
+    position: absolute;
+    padding: 10px;
+    margin: 15px;
+    min-width: 15px;
+    min-height: 15px;
+    height: 15px;
+    width: 15px;
+    font-size: 15px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-content .event-card .select-event:hover {
+    background: #ECEFF1;
+    color: #ff9800;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page .profile-content .friends-participating-box {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.profile-page .profile-content .friends-participants {
+    line-height: 17px;
+    font-size: 17px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.profile-page .profile-content .participation-status {
+    cursor: default;
+    border-radius: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 32px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, .3);
+}
+
+.profile-page .profile-content .communities-user-list {
+    position: relative;
+    margin: 16px;
+}
+
+.profile-page .profile-content .communities-user-list .community {
+    overflow: hidden;
+    background-color: #000;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.profile-page .profile-content .communities-user-list .select-community-button {
+    right: 0;
+    bottom: 0;
+    color: #546E7A;
+    position: absolute;
+    padding: 10px;
+    margin: 15px;
+    min-width: 15px;
+    min-height: 15px;
+    height: 15px;
+    width: 15px;
+    font-size: 15px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    z-index: 200;
+}
+
+.profile-page .profile-content .communities-user-list .select-community-button-adm {
+    left: 0;
+    bottom: 0;
+    color: white;
+    position: absolute;
+    padding: 10px;
+    margin: 15px;
+    min-width: 15px;
+    min-height: 15px;
+    height: 15px;
+    width: 15px;
+    font-size: 15px;
+    background-color: #ff9800;
+    ;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    z-index: 200;
+}
+
+.profile-page .profile-content .communities-user-list .select-community-button:hover {
+    background: #ECEFF1;
+    color: #ff9800;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page .profile-content .communities-user-list .select-community-button-adm:hover {
+    color: black;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page .profile-content .communities-user-list .community .community-infos {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    z-index: 200;
+}
+
+.profile-page .profile-content .communities-user-list .community .community-infos .name {
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.profile-page .profile-content .communities-user-list .community .community-infos .members {
+    font-size: 15px;
+}
+
+.profile-page .profile-content .communities-user-list .community:hover img {
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.profile-page .profile-content .communities-user-list .community img {
+    opacity: 0.4;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.profile-page .profile-content .communities-user-list {
+    position: relative;
+    margin: 16px;
+}
+
+.profile-page .profile-content .communities-user-list .community {
+    overflow: hidden;
+    background-color: #000;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.profile-page .profile-content .communities-user-list .select-community-button {
+    right: 0;
+    bottom: 0;
+    color: #546E7A;
+    position: absolute;
+    padding: 10px;
+    margin: 15px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page .profile-content .communities-user-list .select-community-button:hover {
+    background: #ECEFF1;
+    color: #ff9800;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page .profile-content .communities-user-list .community .community-infos {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+}
+
+.profile-page .profile-content .communities-user-list .community .community-infos .name {
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.profile-page .profile-content .communities-user-list .community .community-infos .members {
+    font-size: 15px;
+}
+
+.profile-page .profile-content .communities-user-list .community:hover img {
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.profile-page .profile-content .communities-user-list .community img {
+    opacity: 0.4;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.profile-page .endorse-btn {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: rgba(179, 179, 179, .9);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    vertical-align: middle;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+}
+
+.profile-page .unendorse-btn {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: rgba(179, 179, 179, .9);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    vertical-align: middle;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+}
+
+.profile-page .recommended-user-btn {
+    cursor: default;
+    font-size: 24px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: rgba(179, 179, 179, .9);
+    border-radius: 50%;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    vertical-align: middle;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-page .not-recommended-user-btn {
+    cursor: default;
+    font-size: 24px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: rgba(179, 179, 179, .9);
+    border-radius: 50%;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    vertical-align: middle;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-page .endorse-btn:hover, .profile-page .recommended-user-btn:hover {
+    color: #2ecc71;
+    background-color: rgba(120, 120, 120, 1);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page .unendorse-btn:hover, .profile-page .not-recommended-user-btn:hover {
+    color: #e74c3c;
+    background-color: rgba(120, 120, 120, 1);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page .friend-request-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto;
+}
+
+.profile-page .friends-request-list md-list-item.md-2-line>.md-avatar {
+    margin-top: auto;
+    margin-right: 15px;
+}
+
+.profile-page .friends-request-list md-list-item.md-no-proxy {
+    padding: 0;
+}
+
+.profile-page .friends-request-list .friend-request-btn {
+    margin-left: 15px;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.profile-page .friends-request-list .friend-request-btn:hover {
+    color: #ff9800;
+    background-color: rgba(0, 0, 0, .1);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.profile-page md-switch.md-default-theme.md-checked .md-ink-ripple, .profile-page md-switch.md-checked .md-ink-ripple {
+    color: #ff9800;
+}
+
+.profile-page md-switch.md-default-theme.md-checked .md-thumb, .profile-page md-switch.md-checked .md-thumb {
+    background-color: #ff9800;
+}
+
+.profile-page md-switch.md-default-theme.md-checked .md-bar, .profile-page md-switch.md-checked .md-bar {
+    background-color: rgba(255, 152, 0, 0.6);
+}

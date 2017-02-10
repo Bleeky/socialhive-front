@@ -1,0 +1,213 @@
+a {
+    text-decoration: none;
+}
+
+p {
+    text-align: justify;
+}
+
+ng-view {
+    height: 100%;
+    /* Compatibility firefox */
+}
+
+* {
+    font-weight: 300;
+}
+
+*:focus {
+    outline: none;
+}
+
+md-content.md-default-theme, md-content {
+    background-color: white;
+}
+
+html.md-default-theme, html, body.md-default-theme, body {
+    background-color: white;
+}
+
+.btn-create {
+    bottom: 20px;
+    right: 20px;
+    position: fixed;
+    background: #ff9800;
+    color: white;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    font-size: 25px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn-create:hover {
+    background: #ff9800;
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.feedback-btn {
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    background-color: #ff9800;
+    color: white;
+    border-radius: 2px;
+    padding: 5px 10px 5px 10px;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 880px) {
+    .feedback-btn {
+        display: none;
+    }
+}
+
+.feedback-btn:hover {
+    color: black;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.feedback-dialog-btn {
+    float: right;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    text-align: center;
+    color: #b3b3b3;
+    padding: 10px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%
+}
+
+.feedback-dialog-btn:hover {
+    background: #e6e6e6;
+    color: #ff9800;
+}
+
+.search-bar-container {
+    vertical-align: middle;
+    border-color: rgba(0, 0, 0, 0.12);
+    border-width: 0 0 1px;
+    border-style: solid;
+    padding-left: 10em;
+    padding-right: 10em;
+}
+
+.event-search-bar {
+    display: inline-block;
+    vertical-align: middle;
+    middle;
+    width: 40%;
+}
+
+trix-toolbar .button_group button, trix-toolbar .button_group input[type="button"] {
+    position: relative;
+    font-size: 0;
+    margin: 0;
+    height: 28px;
+    width: 40px;
+    background: #fff;
+    border: none;
+}
+
+trix-toolbar .button_group {
+    display: inline-block;
+    font-size: 0;
+    margin: 0 8px 4px 0;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+trix-editor {
+    color: #111;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+    margin: 0;
+    padding: 4px 8px;
+    min-height: 54px;
+    outline: none;
+}
+
+.trix-editor {
+    margin: 16px;
+}
+
+.not-data-msg {
+    margin: 16px 0px 16px 0px;
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    font-size: 25px;
+    font-weight: 100;
+}
+
+.feature-not-implemented {
+    opacity: 0.3;
+    cursor: not-allowed !important;
+}
+
+.loading-bar {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    width: 100%;
+    color: #fff;
+}
+
+.loading-bar-container {
+    height: 100vh;
+    width: 100%;
+    z-index: 75;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+md-input-container.md-default-theme.md-input-invalid .md-input, md-input-container.md-input-invalid .md-input {
+    border-color: rgba(213, 0, 0, 0.28);
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: rgba(0, 0, 0, 0.70);
+}
+
+.md-frame {
+    margin-top: 66px;
+}
+
+@media screen and (max-width: 880px) {
+    .md-frame {
+        margin-top: 111px;
+    }
+}

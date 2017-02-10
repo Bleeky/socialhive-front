@@ -1,0 +1,59 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="event-page">
+    <style>
+        .event-page .event-header:before {
+            background: url('{{ADDR_EVENT_IMG}}{{e.main_image}}') no-repeat top center;
+            background-size: cover;
+            background-position: 50% 35%;
+            background-repeat: no-repeat no-repeat;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0;
+            /* <-- Apparently some margin are still there even though it's hidden */
+        }
+    </style>
+    <div class="event-header">
+        <div class="event-header-content">
+            <div class="event-name">{{e.name}}</div>
+            <div class="event-action-button event-join" ng-click="send()">SEND SPONSORING OFFER</div>
+        </div>
+    </div>
+    <div class="event-content">
+        <div style="box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24); margin: 16px;text-align: center;">
+            <md-input-container md-no-float style="width: 90%; margin: 16px;">
+                <textarea ng-model="message" md-maxlength="85" max-rows="5" rows="4" md-select-on-focus="" aria-label="Message" placeholder="Message" md-no-autogrow></textarea>
+            </md-input-container>
+        </div>
+        <md-grid-list class="event-needs-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height="200px" md-gutter="15px" md-gutter-gt-sm="15px">
+            <md-grid-tile md-rowspan="1" md-colspan="2" class="adm-box" ng-repeat="(index, n) in e.sponsor_stuff">
+                <div class="adm-need-container">
+                    <div class="adm-needs">
+                        <md-input-container md-no-float style="width:100%;display: inline-block; margin: 10px 0;">
+                            <input ng-model="n.name" required type="text" aria-label="Name of need" placeholder="Name">
+                        </md-input-container>
+                        <md-input-container md-no-float style="display: inline-block; margin: 10px 0; max-width: 80px;">
+                            <input ng-model="n.quantity" min="1" required type="number" aria-label="Quantity" placeholder="Quantity" style="text-align: center;">
+                        </md-input-container>
+                    </div>
+                    <div class="adm-needs">
+                        <md-input-container md-no-float style="width: 100%; margin: 10px 0 0 0;">
+                            <textarea ng-model="n.description" md-maxlength="85" max-rows="2" rows="2" md-select-on-focus="" aria-label="Description" placeholder="Description" md-no-autogrow></textarea>
+                        </md-input-container>
+
+                    </div>
+                </div>
+                <md-icon ng-click="removeNeed(index)" class="material-icons top-left-button delete-need">clear</md-icon>
+
+            </md-grid-tile>
+            <md-grid-tile md-rowspan="1" md-colspan="2" class="adm-box">
+                <md-icon class="material-icons adm-top-icon" ng-click="addNeed()">add</md-icon>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+</div>

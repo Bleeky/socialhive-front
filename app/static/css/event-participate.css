@@ -1,0 +1,31 @@
+.event-page .event-content .participate-need-btn {
+    display: inline-block;
+    vertical-align: middle;
+    color: white;
+    background-color: #b3b3b3;
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    min-height: 15px;
+    font-size: 15px;
+    line-height: 15px;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    z-index: 900;
+    overflow: visible !important;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .participate-need-btn:hover {
+    color: #ff9800;
+    background-color: #e1e1e1;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}

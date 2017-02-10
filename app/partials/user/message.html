@@ -1,0 +1,57 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="search-bar-container">
+    <md-input-container md-no-float class="md-block">
+        <input type="text" placeholder="Search conversation">
+    </md-input-container>
+</div>
+<div class="chat-page">
+    <div ng-if="conversations.length == 0" class="not-data-msg">There is no conversations.</div>
+    <md-grid-list class="chats-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height="200px" md-gutter="15px" md-gutter-gt-sm="15px">
+        <md-grid-tile md-rowspan="2" md-colspan="2" class="chat-box" ng-repeat="conv in conversations">
+            <div class="chat-container">
+                <div ng-if="conv.users.length > 2" class="ion-ios-people chat-group"></div>
+                <img ng-if="conv.users.length == 2" class="chat-avatar opened" src="{{ADDR_USER_IMG}}{{conv.users[1].main_image}}">
+                <md-icon class="material-icons add-user-chat-btn" role="button" tabindex="0" ng-click="showUsersConv($event, conv)">add</md-icon>
+                <div style="height: 300px; overflow: auto; text-align: left;">
+                    <li style="list-style: none;">
+                        <div class="msg" ng-repeat="msg in conv.messages | orderBy: 'date_sent'">
+                            <md-tooltip md-direction="left">
+                                {{msg.date_sent | date : 'EEEE dd MMM hh:mm:ss'}}
+                            </md-tooltip>
+                            <img ng-if="getSenderImage(conv, msg.sender_id)" class="chat-avatar-small" src="{{ADDR_USER_IMG}}{{getSenderImage(conv, msg.sender_id)}}" />
+                            <img ng-if="!getSenderImage(conv, msg.sender_id)" class="chat-avatar-small" src="./app/static/img/placeholder-user.png" />
+                            <div ng-if="msg.type == 'message'" style="display: inline-block; vertical-align:middle;background-color: {{msg.sender.id == conv.users[1].id ? 'rgba(46, 204, 113,0.2)' : 'rgba(230, 126, 34, 0.2)'}};border-radius: 2px;
+                                  padding: 5px;">
+                                {{msg.body}}
+                        </div>
+                        <div ng-if="msg.type == 'user_added'" style="display: inline-block; vertical-align:middle;background-color: {{msg.sender.id == conv.users[1].id ? 'rgba(46, 204, 113,0.2)' : 'rgba(230, 126, 34, 0.2)'}};border-radius: 2px;
+                                    padding: 5px;">
+                            <b>{{msg.user.first_name}} {{msg.user.last_name}}</b> join the conversation.
+                </div>
+                <div ng-if="msg.type == 'user_left'" style="display: inline-block; vertical-align:middle;background-color: {{msg.sender.id == conv.users[1].id ? 'rgba(46, 204, 113,0.2)' : 'rgba(230, 126, 34, 0.2)'}};border-radius: 2px;
+                                    padding: 5px;">
+                    <b>{{msg.user.first_name}} {{msg.user.last_name}}</b> left the conversation.
+            </div>
+</div>
+</li>
+</div>
+<md-input-container class="md-block chat-input">
+    <input class="md-input" ng-model="conv.msg" aria-label="message to send" />
+    <md-icon class="material-icons post-message-btn" ng-click="sendMessage(conv)" role="button" tabindex="0">send</md-icon>
+</md-input-container>
+</div>
+<md-icon class="material-icons top-left-button delete-need" ng-click="deleteConv(conv)">clear</md-icon>
+</md-grid-tile>
+</md-grid-list>
+<div style="position: fixed; bottom: 20px; right: 20px;">
+    <div style="display: inline-block; vertical-align: middle;">
+        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" placeholder="New conversation" md-items="item in querySearch(searchText)" md-item-text="item.first_name + ' ' + item.last_name" md-selected-item-change="selectedItemChange(item)"
+            md-menu-class="new-conversation-list" style="display: inline-block; vertical-align: middle;">
+            <span md-highlight-text="searchText">{{item.first_name + ' ' + item.last_name}}</span>
+            </md-autocomplete>
+            <md-icon class="material-icons add-chat-btn" ng-click="createChat()" style="display: inline-block; vertical-align: middle;">add</md-icon>
+    </div>
+</div>
+</div>

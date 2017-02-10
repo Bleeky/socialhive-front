@@ -1,0 +1,153 @@
+.post-comment-btn {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.post-comment-btn:hover {
+    color: #ff9800;
+    background-color: rgba(0, 0, 0, .1);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.btn-all-comments {
+    margin-left: 75px;
+    text-transform: uppercase;
+    display: inline-block;
+    border-radius: 2px;
+    border: 1px solid #b3b3b3;
+    background-color: rgba(0, 0, 0, .3);
+    color: white;
+    padding: 8px;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    cursor: pointer;
+}
+
+.btn-all-comments:hover {
+    color: #ff9800;
+    border: 1px solid #e1e1e1;
+    background-color: rgba(0, 0, 0, .1);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.comment-container {
+    text-align: left;
+    margin: 15px;
+    border: 1px solid #eee;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.comment-container .commenter-infos {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+
+.comment-container .comment-btn {
+    cursor: pointer;
+    color: #fff;
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    min-height: 10px;
+    font-size: 10px;
+    line-height: 10px;
+    padding: 10px;
+    border-radius: 50%;
+    overflow: visible!important;
+    transition: all .1s ease;
+}
+
+.comment-container .comment-btn:hover {
+    color: black;
+    transition: all .1s ease;
+}
+
+.comment-container .comment-btn.edit {
+    background-color: #3cb371;
+    bottom: -30px;
+    left: 0;
+}
+
+.comment-container .comment-btn.delete {
+    background-color: salmon;
+    bottom: -30px;
+    left: 30px;
+}
+
+.comment-container .comment-btn.cancel {
+    background-color: rgb(255, 183, 77);
+    bottom: -30px;
+    left: 30px;
+}
+
+.comment-container .commenter-infos .commenter-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 4px solid #ECEFF1;
+}
+
+.comment-container .commenter-infos .commenter-name {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.comment-container .commenter-infos .comment-date {
+    font-size: 13px;
+    font-style: italic;
+}
+
+.comment-container .comment-content {
+    margin-left: 60px;
+    margin-top: 5px;
+    border: 1px solid #eee;
+    padding: 5px;
+    background-color: rgba(236, 239, 241, 0.32);
+}
+
+.connected-user-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 4px solid #ECEFF1;
+}
+
+.post-comment {
+    display: inline-block;
+    vertical-align: middle;
+    width: 400px;
+    margin: 0;
+    max-width: 100%;
+}

@@ -1,0 +1,51 @@
+{
+  "name": "front-end-socialhive",
+  "version": "0.0.1",
+  "description": "sochialhive",
+  "main": "gulpfile.js",
+  "private": true,
+  "keywords": [
+    "web-app",
+    "front-end"
+  ],
+  "scripts": {
+    "build-css": "cat ./app/static/css/*.css | cleancss -o merged-and-minified.css",
+    "build-js": "find ./app/ -name '*.js' -exec cat {} + | uglifyjs -o bundle.js",
+    "watch-css": "nodemon -e css -x \"npm run build-css\"",
+    "watch-js": "nodemon -e js -x \"npm run build-js\"",
+    "start-serv": "npm run build-js & npm run build-css",
+    "start-dev": "npm run watch-js & npm run watch-css & python -m SimpleHTTPServer",
+    "start": "python -m SimpleHTTPServer"
+  },
+  "author": "Fefelilix",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-animate": "^1.5.0",
+    "angular-aria": "^1.5.0",
+    "angular-cookies": "^1.4.8",
+    "angular-google-maps": "^2.3.2",
+    "angular-material": "^1.0.5",
+    "angular-material-data-table": "^0.9.11",
+    "angular-messages": "^1.5.0",
+    "angular-route": "^1.4.8",
+    "angular-simple-logger": "^0.1.7",
+    "angular-touch": "^1.5.5",
+    "angular-trix": "^1.0.2",
+    "angularjs": "0.0.1",
+    "angularjs-datepicker": "^0.2.22-beta",
+    "clean-css": "^3.4.12",
+    "font-awesome": "^4.4.0",
+    "ionicons-pre": "^1.0.0-pre",
+    "jquery": "^2.1.4",
+    "lodash": "^4.10.0",
+    "moment": "^2.13.0",
+    "ng-file-upload": "^12.0.4",
+    "ng-img-crop-full-extended": "^0.6.1",
+    "nodemon": "^1.9.1",
+    "uglify-js": "^2.7.3"
+  },
+  "devDependencies": {
+    "ink-docstrap": "^0.5.2"
+  }
+}

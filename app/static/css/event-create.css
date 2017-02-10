@@ -1,0 +1,148 @@
+.event-page .create-event {
+    top: 88px;
+    right: 88px;
+    position: fixed;
+    background: #ff9800;
+    color: white;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 880px) {
+    .event-page .create-event {
+        top: auto;
+        right: auto;
+        position: relative;
+        display: flex;
+        margin-bottom: 25px;
+    }
+}
+
+.event-page .create-event:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-create-box-title {
+    text-align: center;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-create-box-title .title {
+    display: inline;
+    vertical-align: middle;
+    line-height: 25px;
+    font-weight: 200;
+    font-size: 25px;
+}
+
+.event-page .create-event-helper {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 24px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    color: #b3b3b3;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.event-page .create-event-helper:hover {
+    color: #ff9800;
+}
+
+.event-page .event-create-box-title .box-title-icn {
+    font-size: 25px;
+    display: inline;
+    vertical-align: middle;
+    max-width: 25px;
+    max-height: 25px;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .box:hover .box-title-icn {
+    color: rgba(255, 152, 0, 0.65);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .box:hover .title {
+    color: rgba(255, 152, 0, 0.65);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.dtp>.dtp-content>.dtp-date-view>header.dtp-header {
+    background: #ff9800;
+    color: #fff;
+    text-align: center;
+    padding: 3px;
+}
+
+.dtp div.dtp-date, .dtp div.dtp-time {
+    background: rgba(255, 183, 77, 1);
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+}
+
+.dtp table.dtp-picker-days tr>td>a.selected {
+    background: rgba(255, 183, 77, 1);
+    color: #fff;
+}
+
+.dtp .dtp-actual-meridien a.selected {
+    background: #ff9800;
+    color: #fff;
+}
+
+.dtp .dtp-picker-time>a.dtp-select-hour.selected {
+    background: #ff9800;
+    color: #fff;
+}
+
+.dtp .dtp-hand.on {
+    background: rgba(255, 183, 77, 1);
+}
+
+.dtp div.dtp-actual-year {
+    font-size: 1.6em;
+    color: white;
+}
+
+.dtp div.dtp-year-btn {
+    font-size: 1.4em;
+    line-height: 30px;
+    cursor: pointer;
+    color: white;
+}

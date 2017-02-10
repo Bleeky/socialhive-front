@@ -1,0 +1,140 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="profile-page">
+  <style>
+      .profile-page .adm-cover-picture {
+          background-image: url('{{ADDR_USER_IMG}}{{user.cover_image}}');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: 50% 50%;
+      }
+  </style>
+
+    <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+        <md-tab label="Informations">
+            <div class="profile-content">
+                <div class="adm-top-container">
+                    <md-icon class="material-icons adm-top-icon" ng-click="save()">save</md-icon>
+                </div>
+                <form>
+                    <div class="box">
+                        <div class="adm-cover-picture" ng-show="!picFile2">
+                        </div>
+                        <div style="height: 250px" ng-show="picFile2">
+                            <img-crop image="picFile2  | ngfDataUrl" result-image="user.croppedDataUrl2" result-image-size="{w:1280,h:548}" area-type="rectangle" result-image-quality "1" aspect-ratio="21/9"></img-crop>
+                        </div>
+                        <md-icon class="material-icons top-left-button" ngf-select ng-model="picFile2" file-model="myFile" accept="image/*">insert_photo</md-icon>
+                    </div>
+                    <div class="box profile">
+                        <md-icon class="material-icons top-left-button" ngf-select ng-model="picFile" file-model="myFile" accept="image/*">insert_photo</md-icon>
+                        <div style="height: 250px; text-align:center;">
+                            <img ng-show="!picFile" ng-src="{{ADDR_USER_IMG}}{{user.main_image}}" class="current-img" />
+                            <img-crop ng-show="picFile" image="picFile  | ngfDataUrl" result-image="user.croppedDataUrl" result-image-size="{w:400,h:400}" result-image-quality "1"></img-crop>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="profile-edit-box-title">
+                            <md-icon class="material-icons box-title-icn">event_note</md-icon>
+                            <div class="title">General informations</div>
+                        </div>
+                        <md-content class="md-padding">
+                            <div layout="column">
+                                <md-input-container>
+                                    <label>First Name</label>
+                                    <input ng-model="user.first_name" required type="text">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Last Name</label>
+                                    <input ng-model="user.last_name" required type="text">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Description</label>
+                                    <textarea ng-model="user.bio" md-maxlength="400" max-rows="4" rows="4" md-select-on-focus md-no-autogrow></textarea>
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </div>
+                    <div class="box">
+                        <div class="profile-edit-box-title">
+                            <md-icon class="material-icons box-title-icn">settings</md-icon>
+                            <div class="title">Settings</div>
+                        </div>
+                        <md-content class="md-padding">
+                            <div layout="column">
+                                <md-input-container>
+                                    <label>Email</label>
+                                    <input ng-model="user.email" required type="email">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>New Password</label>
+                                    <input ng-model="user.hash" required type="password">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Repeat Password</label>
+                                    <input ng-model="user.hash" required type="password">
+                                </md-input-container>
+                            </div>
+                            <md-list-item>
+                                <md-icon>vpn_lock</md-icon>
+                                <p> Private profile </p>
+                                <md-switch class="md-secondary" ng-model="user.settings.private"></md-switch>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-icon>local_post_office</md-icon>
+                                <p> Email Notifications </p>
+                                <md-switch class="md-secondary" ng-model="user.settings.email_notifs"></md-switch>
+                            </md-list-item>
+                        </md-content>
+                    </div>
+                </form>
+            </div>
+        </md-tab>
+        <md-tab label="Posts">
+            <div class="profile-content">
+                <div class="adm-top-container">
+                    <md-icon class="material-icons adm-top-icon" ng-hide="editorBool" ng-click="openEditor()">add</md-icon>
+                    <md-icon class="material-icons adm-top-icon" ng-show="editorBool" ng-click="closeEditor()">replay</md-icon>
+                    <md-icon class="material-icons adm-top-icon" ng-show="editorBool" ng-click="savePost()">done</md-icon>
+                </div>
+                <div ng-if="user.posts == undefined && !editorBool" class="not-data-msg">There is no post yet.</div>
+                <div ng-if="editorBool" class="trix-editor">
+                    <trix-editor angular-trix ng-model="editorData" class="trix-content" angular-trix trix-initialize="trixInit(e, editor);" trix-change="trixChange(e, editor);" trix-selection-change="trixSelectionChange(e, editor);" trix-focus="trixFocus(e, editor);"
+                        trix-blur="trixBlur(e, editor);"></trix-editor>
+                </div>
+                <md-grid-list class="profile-adm-posts-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height="150px" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <md-grid-tile ng-repeat="post in user.posts" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2" class="adm-box">
+                        <md-icon class="material-icons adm-action-btn-in remove-post" ng-click="deletePost(post.id)">clear</md-icon>
+                        <md-icon class="material-icons adm-action-btn-in edit-post" ng-click="editPost(post)">mode_edit</md-icon>
+                        <md-icon class="material-icons adm-action-btn-in edit-coments">question_answer</md-icon>
+                        <div class="adm-post-date">
+                            {{post.postDate}}
+                        </div>
+                        <div class="adm-post-title">{{post.body | limitTo: 100}} {{post.body.length
+                            < 100 ? '' : '...'}}</div>
+                          </md-grid-tile>
+                      </md-grid-list>
+
+                      </div>
+              </md-tab>
+
+        <md-tab label="Photos">
+            <div class="profile-content">
+                <div class="adm-top-container">
+                    <md-icon class="material-icons adm-top-icon" ngf-select="AddSideImages($file)" ng-model="picFile" file-model="myFile" accept="image/*">add</md-icon>
+                </div>
+                <div ng-if="user.side_images == undefined || user.side_images.length == 0" class="not-data-msg">There is no pictures yet.</div>
+                <md-grid-list class="profile-adm-pictures-list" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <md-grid-tile ng-repeat="(k, p) in user.side_images" class="picture" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2">
+                        <md-icon class="material-icons adm-action-btn-in remove-pic" ng-click="DeleteSideImage(k)">clear</md-icon>
+                        <img src="{{ADDR_USER_IMG}}{{p}}">
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+    </md-tabs>
+    </div>

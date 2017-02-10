@@ -1,0 +1,21 @@
+{
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "outputSourceFiles": true
+        },
+        "systemName"      : "SocialHive Front-end",
+        "footer"          : "",
+        "copyright"       : "",
+        "navType"         : "vertical",
+        "theme"           : "flatly",
+        "linenums"        : true,
+        "collapseSymbols" : false,
+        "inverseNav"      : true
+    },
+    "source": {
+        "exclude": ["node_modules/", "bower_component/", "build/"]
+    }
+
+}

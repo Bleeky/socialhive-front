@@ -1,0 +1,782 @@
+.md-toolbar-tools md-icon {
+    margin: 10px;
+}
+
+.md-toolbar-tools img {
+    border-radius: 50%;
+    width: 50px;
+    margin: 16px;
+}
+
+#home {
+    height: 100%;
+    /* Compatibility firefox */
+}
+
+#event-img-main {
+    min-width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+#event-img-main img {
+    width: 100%;
+}
+
+.event-title {
+    margin-bottom: 0;
+}
+
+.angular-google-map-container {
+    height: 400px;
+}
+
+
+/* BUTTON EVENT CREATION */
+
+.md-button.md-fab.md-fab-bottom-right {
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    left: auto;
+    position: fixed;
+}
+
+.modal-create {
+    min-width: 50%;
+}
+
+.modal-create-dialog {
+    min-width: 100%;
+}
+
+.modal-create-content {
+    min-width: 80%;
+}
+
+.event-invited-box {
+    max-height: 280px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+/* Adaptation table cell lib */
+
+table.md-table td.md-cell {
+    border-top: none;
+}
+
+md-input-container .md-errors-spacer {
+    min-height: 0px;
+}
+
+.cropArea.event {
+    border-radius: 0;
+}
+
+.event img-crop canvas {
+    border-radius: 0;
+}
+
+
+/* GRID SYSTEM CSS */
+
+md-grid-list {
+    margin: 8px;
+}
+
+.gray {
+    background: #f5f5f5;
+}
+
+.green {
+    background: #b9f6ca;
+}
+
+.yellow {
+    background: #ffff8d;
+}
+
+.blue {
+    background: #84ffff;
+}
+
+.darkBlue {
+    background: #80d8ff;
+}
+
+.deepBlue {
+    background: #448aff;
+}
+
+.purple {
+    background: #b388ff;
+}
+
+.lightPurple {
+    background: #8c9eff;
+}
+
+.red {
+    background: #ff8a80;
+}
+
+.pink {
+    background: #ff80ab;
+}
+
+md-grid-tile {
+    transition: all 300ms ease-out 50ms;
+}
+
+md-grid-tile md-icon {
+    padding-bottom: 32px;
+}
+
+md-grid-tile md-grid-tile-footer {
+    background: rgba(0, 0, 0, 0.68);
+    /*height: 40%; */
+}
+
+md-grid-tile-footer figcaption {
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+md-grid-tile-header figcaption {
+    width: 100%;
+    height: 100%;
+}
+
+md-grid-tile-footer figcaption h3 {
+    margin: 0;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+}
+
+md-grid-list {
+    /*box-sizing: border-box;
+   display: block;*/
+    position: unset;
+}
+
+md-grid-tile md-grid-tile-footer {
+    background: rgba(0, 0, 0, 0.60);
+}
+
+md-card {
+    margin: 0;
+}
+
+md-card md-card-title {
+    padding-top: 10px;
+}
+
+md-card .md-headline {
+    font-size: 20px;
+    height: 1.5em;
+    min-height: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+md-card .md-subhead {
+    padding-top: 0;
+    padding-bottom: 0 !important;
+    color: rgba(0, 0, 0, 0.60);
+}
+
+md-card p {
+    overflow: hidden;
+    ;
+    /*max-height:10px;*/
+}
+
+
+/*
+NEW DESIGN EVENT PAGE
+*/
+
+.event-page {}
+
+.event-page .event-header {
+    background-color: #1b2023;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.event-page .event-header .event-header-content {
+    padding: 50px;
+    text-align: center;
+}
+
+.event-page .event-header:before {
+    content: ' ';
+    height: 100%;
+    opacity: .3;
+    position: absolute;
+    width: 100%;
+}
+
+.event-page .event-header .event-name {
+    display: block;
+    color: #fff;
+    position: relative;
+    font-size: 50px;
+    margin-bottom: 15px;
+    font-weight: 100;
+}
+
+.event-page .event-header .event-header-infos {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    z-index: 9;
+    margin-bottom: 15px;
+}
+
+.event-page .event-header .event-header-infos .event-infos {
+    color: #fff;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: 33%;
+}
+
+.event-page .event-header .event-header-infos .event-infos .event-infos-icon {
+    color: #fff;
+    width: 40px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 35px;
+}
+
+.event-page .event-header .event-header-infos .event-infos .event-infos-category {
+    font-size: 20px;
+}
+
+.event-page .event-header .event-header-infos .event-infos:not(:last-child) {
+    border-right: 1px solid #fff;
+}
+
+.event-page .event-header .event-action-button {
+    border-radius: 2px;
+    font-size: 18px;
+    padding: 9px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    text-transform: capitalize;
+    position: relative;
+    display: inline-block;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-header .event-action-button.event-join {
+    background-color: #ff9800;
+    font-weight: 400;
+}
+
+.event-page .event-header .event-special-btn.event-adm {
+    left: 10px;
+}
+
+.event-page .event-header .event-special-btn {
+    top: 10px;
+    position: absolute;
+    background: #ff9800;
+    color: white;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.event-page .event-header .event-special-btn:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-header .event-special-btn.event-message {
+    right: 10px;
+}
+
+.event-page .event-header .event-action-button:hover {
+    color: #000;
+}
+
+.event-page .event-header .event-time-box {
+    color: #fff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 15px;
+    position: relative;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.event-page .event-header .event-time-box .event-info {
+    background-color: rgba(0, 0, 0, 0.30);
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 9px;
+    text-align: center;
+    color: #fff;
+    display: block;
+    text-transform: capitalize;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-header .event-time-box .event-info:hover {
+    background-color: #ff9800;
+    color: #000;
+}
+
+.event-page .event-header .event-time-box .event-time:not(last-child) {
+    margin-right: 10px;
+}
+
+.event-page md-tabs .md-tab {
+    color: #000;
+}
+
+.event-page md-tabs .md-active span {
+    color: #ff9800;
+}
+
+.event-page md-tabs md-ink-bar {
+    color: #ff9800;
+    background-color: #ff9800;
+}
+
+.event-content {
+    padding-bottom: 30px;
+}
+
+@media screen and (min-width: 960px) {
+    .event-content {
+        padding-left: 10em;
+        padding-right: 10em;
+    }
+}
+
+.event-page .event-content .box {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    margin: 20px 0px 20px 0px;
+    position: relative;
+    padding: 15px;
+}
+
+.event-page .event-content .box .box-title-wrapper {
+    margin-bottom: 10px;
+}
+
+.event-page .event-content .box .box-title-wrapper .box-title {
+    font-size: 17px;
+    text-transform: uppercase;
+    line-height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.event-page .event-content .event-participants-list {
+    position: relative;
+    margin: 16px;
+}
+
+.event-page .event-content .event-participants-list .user-name {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    -webkit-transition: 1.2s all ease;
+    -transition: 1.2s all ease;
+    transition: 1.2s all ease;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: none;
+}
+
+.event-page .event-content .event-participants-list .user-name a {
+    font-weight: 500;
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.event-page .event-content .event-participants-list .user {
+    border-radius: 50%;
+}
+
+.event-page .event-content .event-participants-list .event-organiser-icn {
+    position: absolute;
+    top: -15px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    color: white;
+    background-color: #ff9800;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 3px;
+}
+
+.event-page .event-content .event-participants-list .user:hover .user-name {
+    display: block;
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.event-page .event-content .event-participants-list .user:hover {
+    background-color: #000;
+}
+
+.event-page .event-content .event-participants-list .user:hover img {
+    opacity: 0.4;
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.event-page .event-content .event-participants-list .user img {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.event-page .event-content .friends-participating-box {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.event-page .event-content .friends-participants {
+    line-height: 17px;
+    font-size: 17px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.event-page .event-content .participation-status {
+    cursor: default;
+    border-radius: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 32px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, .3);
+}
+
+.event-page .event-content .general-informations-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.event-page .event-content .general-informations-container .general-info {
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 2px;
+    font-size: 13px;
+    padding: 9px;
+    text-align: center;
+    display: block;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .event-organiser {
+    margin: 15px;
+    display: flex;
+}
+
+.event-page .event-content .event-organiser .event-organiser-box {
+    border: 1px solid rgba(0, 0, 0, .3);
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .event-organiser .event-organiser-box:hover {
+    background: rgba(0, 0, 0, .3);
+    color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .event-organiser .user-avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.event-page .event-content .event-organiser .user-name {
+    line-height: 50px;
+    padding-left: 5px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* NEEDS */
+
+.event-page .event-content .event-needs-list {
+    position: relative;
+    margin: 16px;
+}
+
+.event-page .event-content .general-progress-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    width: 50%;
+}
+
+.event-page .event-content .general-progress-container .general-progress-title {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.event-page .event-content .general-progress-container .canvas-holder {
+    position: relative;
+}
+
+.event-page .event-content .general-progress-container .chart-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.event-page .event-content .need-box {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.event-page .event-content .need-box .chart-overload {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.event-page .event-content .need-box:hover .need-quantity {
+    -moz-transform: scale(1.20, 1.20);
+    -ms-transform: scale(1.20, 1.20);
+    -webkit-transform: scale(1.20, 1.20);
+    transform: scale(1.20, 1.20);
+    -webkit-transition: 0.1s all ease-in-out;
+    - transition: 0.1s all ease-in-out;
+    transition: 0.1s all ease-in-out;
+}
+
+.event-page .event-content .need-box .need-content {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    width: 80%;
+}
+
+.event-page .event-content .need-box .need-content .need-name {
+    line-height: 18px;
+}
+
+.event-page .event-content .need-box .need-content .need-description {
+    display: block;
+    font-size: 12px;
+}
+
+.event-page .event-content .need-box .need-chart {
+    display: block;
+    padding: 10px;
+}
+
+.event-page .event-content .need-box .need-chart .need-quantity {
+    -webkit-transition: 0.1s all ease-in-out;
+    - transition: 0.1s all ease-in-out;
+    transition: 0.1s all ease-in-out;
+    text-align: center;
+}
+
+
+/* POSTS */
+
+.event-page .event-content .post-box {
+    text-align: center;
+    border-radius: 2px;
+    background-color: white;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.event-page .event-content .post-box img {
+    max-width: 100%;
+    text-align: center;
+}
+
+.event-page .event-content .posts-actions {
+    overflow: hidden;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    float: right;
+}
+
+.event-page .event-content .posts-actions>li {
+    display: block;
+    float: left;
+    list-style: none;
+    margin-left: 8px;
+}
+
+.event-page .event-content .posts-actions .post-button {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 7px 10px;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.event-page .event-content .posts-actions .post-button:hover {
+    background: #e6e6e6;
+    border-color: #e6e6e6;
+}
+
+.event-page .event-content .posts-actions .post-button:hover .material-icons {
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    color: #ff9800;
+}
+
+.event-page .event-content .posts-actions .post-button .material-icons {
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    color: #b3b3b3;
+}
+
+
+/* PICTURES */
+
+.event-page .event-content .event-pictures-list {
+    position: relative;
+    margin: 16px;
+}
+
+.event-page .event-content .event-pictures-list .picture {
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.event-page .event-content .event-pictures-list .picture:hover img {
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.event-page .event-content .event-pictures-list .picture img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}

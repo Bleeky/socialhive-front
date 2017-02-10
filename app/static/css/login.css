@@ -1,0 +1,292 @@
+.login-page {}
+
+.login-page .login-header {
+    background-color: #1b2023;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.login-page .login-header:before {
+    content: ' ';
+    height: 100%;
+    opacity: .3;
+    position: absolute;
+    width: 100%;
+}
+
+.login-page .sh-moto-text {
+    font-size: 50px;
+    font-weight: 200;
+    color: #fff;
+}
+
+.login-page .sh-moto-logo {
+    width: 100px;
+    height: auto;
+}
+
+.login-page .feats {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login-page .feat-bubble {
+    color: #fff;
+    text-align: -webkit-center;
+    width: 120px;
+}
+
+.login-page .feat-icon {
+    font-size: 45px;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    padding: 15px;
+    padding-bottom: 18px;
+    border: 2px solid white;
+    margin-bottom: 10px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-page .feat-icon:hover {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-page .feat-bubble:hover .feat-text {
+    font-weight: 500;
+}
+
+.login-page .feat-text {
+    font-size: 16px;
+}
+
+.login-page .sh-login-box {
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 15px;
+    margin: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    position: relative;
+}
+
+@media screen and (min-width: 1398px) {
+    .login-page .sh-login-box {
+        width: 35%;
+    }
+}
+
+.login-page .box-title {
+    font-size: 25px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.login-page .sh-login-box .box-title {
+    font-size: 20px;
+    text-align: center;
+    color: #3e3e3e;
+    position: relative;
+}
+
+.login-page .md-button.md-raised span {
+    font-weight: 400;
+}
+
+.login-page md-input-container.md-default-theme label, md-input-container label, md-input-container.md-default-theme .md-placeholder, md-input-container .md-placeholder {
+    color: rgba(0, 0, 0, 0.70);
+}
+
+.login-page .sh-login-box .img-picker-container {
+    position: relative;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.login-page .sh-login-box .img-picker-container img-crop canvas {
+    border-radius: 50%;
+}
+
+.login-page .sh-login-box .img-picker-container .img-picker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ff9800;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.login-page .sh-login-box .img-picker-container .img-picker:hover md-icon {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.login-page .sh-login-box .signup-names {
+    margin-left: 15px;
+}
+
+.login-page .sh-login-box .box-separator {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, #cfd8dc, #cfd8dc, #cfd8dc);
+}
+
+.login-page .sh-login-box .signup-validate {
+    font-weight: 400 !important;
+    color: white;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.login-page .sh-login-box .signup-validate:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.login-page .twitter-box {
+    font-weight: 400;
+    cursor: pointer;
+    width: 40%;
+    margin: 10px;
+    background-color: #4099FF;
+    padding: 10px;
+    border-radius: 2px;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    margin: 10px;
+    display: inline-block;
+}
+
+.login-page .twitter-box:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.login-page .facebook-box {
+    font-weight: 400;
+    cursor: pointer;
+    width: 40%;
+    margin: 10px;
+    background-color: #3b5998;
+    padding: 10px;
+    border-radius: 2px;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    display: inline-block;
+}
+
+.login-page .facebook-box:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.login-page .signup-icon {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.cropper-pop-dialog-btn {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    text-align: center;
+    color: #b3b3b3;
+    padding: 10px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%
+}
+
+.cropper-pop-dialog-btn:hover {
+    background: #e6e6e6;
+    color: #ff9800;
+}
+
+.lost-pass-btn {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 2px;
+    padding: 9px;
+    text-align: center;
+    color: #fff;
+    background: #ff9800;
+    cursor: pointer;
+    text-transform: capitalize;
+    position: relative;
+    display: inline-block;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.lost-pass-btn:hover {
+    color: black;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+
+/*FOOTER*/
+
+.sh-footer {
+    /*background-color: #ff9800;*/
+}
+
+.sh-footer .sh-footer-content {
+    padding: 25px;
+    color: #fff;
+}

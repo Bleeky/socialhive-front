@@ -1,0 +1,51 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<md-menu md-position-mode="target-left target" md-offset="30 45">
+    <md-icon md-menu-origin ng-click="$mdOpenMenu($event)" class="filters">search</md-icon>
+    <md-menu-content width="3" style="padding: 20px;">
+        <md-menu-item style="min-height: 30px;height: 30px; padding: 5px 0px 5px 0px;">
+            <md-switch ng-model="user.friendsFilter" aria-label="My friends" style="display: inline-block; vertical-align: middle;margin: 0;padding: 0;">
+                My friends
+            </md-switch>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
+
+<div class="search-bar-container">
+    <md-input-container md-no-float class="md-block">
+        <input ng-model="users.query" type="text" placeholder="Search">
+    </md-input-container>
+</div>
+<div class="users-profiles">
+    <div class="all-users-list">
+        <md-grid-list md-cols-sm="6" md-cols-md="8" md-cols-gt-md="10" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="15px">
+            <md-grid-tile class="user" md-rowspan="1" md-colspan="1" ng-repeat="contact in allContacts | filter:users.query | filter:friendsFilter" ng-if="contact.id != user.id">
+                <a href="/#/user/{{contact.id}}">
+                    <img ng-if="contact.main_image" ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" alt="{{contact.name}}">
+                    <img ng-if="!contact.main_image" src="./app/static/img/placeholder-user.png">
+                    <div class="user-name">
+                        {{contact.first_name}} {{contact.last_mame}}
+                    </div>
+                    <md-icon ng-click="createConv(contact)" class="material-icons user-actions-btn">chat_bubble</md-icon>
+                </a>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+    <hr class="hr-sep"/>
+    <div class="all-users-list">
+      <div style="text-align: center; font-size: 22px; font-weight: 100;">
+        Sponsors
+      </div>
+        <md-grid-list md-cols-sm="6" md-cols-md="8" md-cols-gt-md="10" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="15px">
+            <md-grid-tile class="user" md-rowspan="1" md-colspan="1" ng-repeat="contact in allContacts | filter:users.query | filter:sponsorFilter" ng-if="contact.id != user.id">
+                <a href="/#/user/{{contact.id}}">
+                    <img ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" alt="{{contact.name}}" />
+                    <div class="user-name">
+                        {{contact.first_name}} {{contact.last_mame}}
+                    </div>
+                </a>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+</div>

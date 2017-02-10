@@ -1,0 +1,200 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="community-page">
+    <style>
+        .community-page .adm-cover-picture {
+            background-image: url('{{ADDR_COMMUNITY_IMG}}{{community.cover_image}}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+        }
+    </style>
+    <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+        <md-tab label="Informations">
+            <div class="community-content">
+                <div class="adm-top-container">
+                    <md-icon class="material-icons adm-top-icon" ng-click="updateComu()">save</md-icon>
+                </div>
+                <form>
+                    <div class="box">
+                        <div class="adm-cover-picture" ng-show="!picFile">
+                        </div>
+                        <div style="height: 250px" ng-show="picFile">
+                            <img-crop image="picFile  | ngfDataUrl" result-image="community.croppedDataUrl" result-image-size="{w:1280,h:548}" area-type="rectangle" result-image-quality "1" aspect-ratio="21/9"></img-crop>
+                        </div>
+                        <md-icon class="material-icons top-left-button" ngf-select ng-model="picFile" file-model="myFile" accept="image/*">insert_photo</md-icon>
+                    </div>
+
+                    <div class="box profile">
+                        <md-icon class="material-icons top-left-button" ngf-select ng-model="picFile2" file-model="myFile2" accept="image/*">insert_photo</md-icon>
+                        <div style="height: 250px; text-align:center;">
+                            <img ng-show="!picFile2" ng-src="{{ADDR_COMMUNITY_IMG}}{{community.main_image}}" class="current-img"/>
+                            <img-crop ng-show="picFile2" image="picFile2  | ngfDataUrl" result-image="community.croppedDataUrl2" result-image-size="{w:400,h:400}" result-image-quality "1"></img-crop>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="community-create-box-title">
+                            <md-icon class="material-icons box-title-icn">event_note</md-icon>
+                            <div class="title">General informations</div>
+                        </div>
+                        <md-content class="md-padding">
+                            <div layout="column">
+                                <md-input-container>
+                                    <label>Name</label>
+                                    <input ng-model="community.name" required type="text">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Description</label>
+                                    <textarea ng-model="community.description" md-maxlength="400" max-rows="4" rows="4" md-select-on-focus md-no-autogrow></textarea>
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </div>
+                </form>
+                <div class="adm-top-container">
+                    <md-icon class="material-icons adm-top-icon" ng-click="delete()">delete</md-icon>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab label="Members">
+            <div class="community-content">
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">group</md-icon>
+                    <div class="friends-participants">MEMBERS</div>
+                    <div class="participation-status">{{community.members.length ? community.members.length : 0}}</div>
+                </div>
+                <md-input-container md-no-float class="md-block" ng-if="community.members">
+                    <input ng-model="members.query" type="text" placeholder="Search SocialHiver">
+                </md-input-container>
+                <div ng-if="community.members == undefined" class="not-data-msg">No members yet.</div>
+                <md-list class="fixedRows">
+                    <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in community.members | filter:members.query">
+                        <img ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" class="md-avatar" alt="{{contact.name}}" />
+                        <div class="md-list-item-text compact community-inline">
+                            <a href="/#/user/{{contact.id}}"><h3>{{contact.first_name}} {{contact.last_name}}</h3></a>
+                            <p></p>
+                        </div>
+                        <div class="community-inline">
+                            <!-- <md-icon class="material-icons user-action-btn">settings</md-icon> -->
+                            <md-icon class="material-icons user-action-btn" ng-click="deleteUser(contact)">clear</md-icon>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </md-tab>
+        <md-tab label="Requests">
+            <div class="community-content">
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">group_add</md-icon>
+                    <div class="friends-participants">REQUESTS</div>
+                    <div class="participation-status">{{requests.length + 0}}</div>
+                </div>
+                <div ng-if="requests == undefined || requests.length == 0" class="not-data-msg">No requests yet.</div>
+                <md-list class="fixedRows">
+                    <md-list-item class="md-2-line contact-item" ng-repeat="r in requests">
+                        <img ng-src="{{ADDR_USER_IMG}}{{r.sender.main_image}}" class="md-avatar" alt="{{r.sender.id}}" />
+                        <div class="md-list-item-text compact community-inline">
+                            <a href="/#/user/{{r.sender.id}}"><h3>{{r.sender.first_name}} {{r.sender.last_name}}</h3></a>
+                        </div>
+                        <div class="community-inline">
+                            <!-- <md-icon class="material-icons user-action-btn">settings</md-icon> -->
+                            <md-icon class="material-icons user-action-btn" ng-click="accept(r)">done</md-icon>
+                            <md-icon class="material-icons user-action-btn" ng-click="refuse(r)">clear</md-icon>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </md-tab>
+        <md-tab label="Invites">
+            <div class="community-content">
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">mail</md-icon>
+                    <div class="friends-participants">PENDING INVITATIONS</div>
+                    <div class="participation-status">{{sentInvite.length + 0}}</div>
+                </div>
+                <md-input-container md-no-float class="md-block" ng-if="pendingInvitation">
+                    <input ng-model="invite.query" type="text" placeholder="Search SocialHiver">
+                </md-input-container>
+                <div ng-if="sentInvite.length == 0" class="not-data-msg">No pending invitation.</div>
+                <md-list class="fixedRows">
+                    <!-- <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in allContacts | filter:!contact.sent | filter:filterInvite">
+                        <img ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" class="md-avatar" alt="{{contact.first_name}}" />
+                        <div class="md-list-item-text compact community-inline">
+                            <a href="/#/user/{{contact.id}}"><h3>{{contact.first_name}} {{contact.last_name}}</h3></a>
+                            <p></p>
+                        </div>
+                    </md-list-item> -->
+                    <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in sentInvite">
+                        <img ng-src="{{ADDR_USER_IMG}}{{contact.guest.main_image}}" class="md-avatar" alt="{{contact.guest.first_name}}" />
+                        <div class="md-list-item-text compact community-inline">
+                            <a href="/#/user/{{contact.guest.id}}"><h3>{{contact.guest.first_name}} {{contact.guest.last_name}}</h3></a>
+                            <p></p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">mail</md-icon>
+                    <div class="friends-participants">NEW INVITATIONS</div>
+                </div>
+                <md-input-container md-no-float class="md-block">
+                    <input ng-model="invite.query" type="text" placeholder="Search SocialHiver">
+                </md-input-container>
+                <md-list class="fixedRows">
+                    <md-list-item class="md-2-line contact-item" ng-hide="contact.sent || contact.id == user.id" ng-repeat="(index, contact) in allContacts | filter:invite.query  | filter:pendingInviteFilter | filter:sponsorFilter">
+                        <img ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" class="md-avatar" alt="{{contact.first_name}}" />
+                        <div class="md-list-item-text compact community-inline">
+                            <a href="/#/user/{{contact.id}}"><h3>{{contact.first_name}} {{contact.last_name}}</h3></a>
+                            <p></p>
+                        </div>
+                        <div class="community-inline">
+                            <md-icon class="material-icons user-action-btn" ng-click="invite(contact)">add</md-icon>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </md-tab>
+        <md-tab label="Posts">
+            <div class="community-content">
+                <div class="adm-top-container">
+                    <md-icon class="material-icons adm-top-icon" ng-hide="editorBool" ng-click="openEditor()">add</md-icon>
+                    <md-icon class="material-icons adm-top-icon" ng-show="editorBool" ng-click="closeEditor()">replay</md-icon>
+                    <md-icon class="material-icons adm-top-icon" ng-show="editorBool" ng-click="savePost()">done</md-icon>
+                </div>
+                <div ng-if="(community.posts == undefined || community.posts.length == 0) && !editorBool" class="not-data-msg">There is no post yet.</div>
+                <div ng-if="editorBool" class="trix-editor">
+                    <trix-editor angular-trix ng-model="editorData" angular-trix trix-initialize="trixInit(e, editor);" trix-change="trixChange(e, editor);" trix-selection-change="trixSelectionChange(e, editor);" trix-focus="trixFocus(e, editor);" trix-blur="trixBlur(e, editor);"></trix-editor>
+                </div>
+
+                <md-grid-list class="community-adm-posts-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height="150px" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <md-grid-tile ng-repeat="post in community.posts" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2" class="adm-box">
+                        <md-icon class="material-icons adm-action-btn-in remove-post" ng-click="deletePost(post.id)">clear</md-icon>
+                        <md-icon class="material-icons adm-action-btn-in edit-post" ng-click="editPost(post)">mode_edit</md-icon>
+                        <md-icon class="material-icons adm-action-btn-in edit-coments">question_answer</md-icon>
+                        <div class="adm-post-date">
+                            {{post.last_updated | date : 'EEEE dd MMM'}}
+                        </div>
+                        <div class="adm-post-title">{{post.body | limitTo: 100}} {{post.body.length
+                            < 100 ? '' : '...'}}</div>
+                    </md-grid-tile>
+
+                </md-grid-list>
+                </div>
+        </md-tab>
+        <md-tab label="Pictures">
+            <div class="community-content">
+                <div class="adm-top-container">
+                    <md-icon class="material-icons adm-top-icon" ngf-select="AddSideImages($file)" ng-model="picFile3" file-model="myFile" accept="image/*">add</md-icon>
+                </div>
+                <div ng-if="community.side_images == undefined || community.side_images.length == 0" class="not-data-msg">There is no pictures yet.</div>
+                <md-grid-list class="community-adm-pictures-list" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <md-grid-tile ng-repeat="(index, i) in community.side_images" class="picture" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2">
+                        <md-icon class="material-icons adm-action-btn-in remove-pic" ng-click="DeleteSideImage(index)">clear</md-icon>
+                        <img src="{{ADDR_COMMUNITY_IMG}}{{i}}">
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+    </md-tabs>
+    </div>

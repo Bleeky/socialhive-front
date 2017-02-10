@@ -1,0 +1,262 @@
+<div class="community-page">
+    <div class="community-page-top">
+        <style>
+            .community-cover:before {
+                background: url('{{ADDR_COMMUNITY_IMG}}{{community.cover_image}}') no-repeat top center;
+                background-size: cover;
+                background-position: 50% 35%;
+                background-repeat: no-repeat no-repeat;
+            }
+        </style>
+        <div class="community-cover">
+            <div class="community-cover-content">
+                <div class="community-name">
+                    {{community.name}}
+                </div>
+                <ul class="community-stats">
+                    <li class="community-stat">
+                        <md-tooltip md-direction="left">
+                            SocialHivers
+                        </md-tooltip>
+                        <md-icon class="material-icons" style="color: white;">mood</md-icon>
+                        {{community.members.length + 1}}
+                    </li>
+                    <li class="community-stat">
+                        <md-tooltip md-direction="right">
+                            Events organised
+                        </md-tooltip>
+                        <md-icon class="material-icons" style="color: white;">beenhere</md-icon>
+                        {{community.events.length + 0}}
+                    </li>
+                </ul>
+                <div class="community-description">
+                    {{community.description}}
+                </div>
+                <a href="/#/community/admin/{{community.id}}">
+                    <md-icon class="material-icons community-special-btn community-adm" ng-if="user.id == community.admin.id">settings</md-icon>
+                </a>
+                <a href="/#/community/{{community.id}}/participate" ng-if="!inside && community.pending != true && community.invited != true">
+                    <md-icon class="material-icons community-special-btn community-message">add</md-icon>
+                </a>
+            </div>
+        </div>
+        <div class="community-header">
+            <div class="community-image-container">
+                <div class="community-image">
+                    <img ng-if="community.main_image" src="{{ADDR_COMMUNITY_IMG}}{{community.main_image}}">
+                    <img ng-if="!community.main_image" src="./app/static/img/placeholder-cover.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+        <md-tab label="Events">
+            <md-content class="community-content">
+                <div ng-if="community.events == undefined || community.events.length == 0" class="not-data-msg">There is no event for this community.</div>
+                <div ng-repeat="ev in community.events" class="community-event">
+                    <img ng-if="ev.main_image" src="{{ADDR_EVENT_IMG}}{{ev.main_image}}">
+                    <img ng-if="!ev.main_image" src="./app/static/img/placeholder-cover.png">
+                    <div class="event-infos">
+                        <md-icon class="material-icons event-icon">place</md-icon>
+                        <div class="event-title">{{ev.name}}</div>
+                        <div class="event-date">{{ev.start_date | date : 'EEEE dd MMM'}}</div>
+                    </div>
+                    <a href="/#/event/{{ev.id}}">
+                        <md-icon class="material-icons select-event">send</md-icon>
+                    </a>
+                </div>
+                <!-- <div class="community-event">
+                    <img src="https://i.ytimg.com/vi/Jeuw39B8Hn0/maxresdefault.jpg">
+                    <div class="event-infos">
+                        <md-icon class="material-icons event-icon">place</md-icon>
+                        <div class="event-title">The Simpsons Fox</div>
+                        <div class="event-type">-Concert-</div>
+                        <div class="event-date">Sunday, 9 April - 8:30PM</div>
+                    </div>
+                    <md-icon class="material-icons select-event">send</md-icon>
+                </div>
+                <div class="community-event">
+                    <img src="http://s3cf.recapguide.com/img/tv/117/23x13/The-Simpsons-Season-23-Episode-13-32-b40b.jpg">
+                    <div class="event-infos">
+                        <md-icon class="material-icons event-icon">place</md-icon>
+                        <div class="event-title">Wine Degustation</div>
+                        <div class="event-type">-Gathering-</div>
+                        <div class="event-date">Sunday, 2 March - 5:00PM</div>
+                    </div>
+                    <md-icon class="material-icons select-event">send</md-icon>
+                </div> -->
+            </md-content>
+        </md-tab>
+        <md-tab label="Posts">
+            <md-content class="community-content">
+                <div ng-if="community.posts == undefined || community.posts.length == 0" class="not-data-msg">There is no post for this community.</div>
+                <div ng-repeat="(ind, post) in community.posts">
+                    <div class="community-box">
+                        <p style="float: right; font-size: 15px; font-style: italic;">{{post.date_created | date : 'EEEE dd MMM'}}</p>
+                        <p style="content: '';display: block; clear: both;">{{post.body}}</p>
+                            <div style="overflow: auto;">
+                                <ul class="communities-posts-actions">
+                                    <li class="community-button">
+                                        <md-tooltip md-direction="top">
+                                            Not implemented yet !
+                                        </md-tooltip>
+                                        <md-icon class="material-icons">star</md-icon>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="community-box" style="margin-top: 0;">
+                        <div>
+                            <img src="{{ADDR_USER_IMG}}{{user.main_image}}" class="connected-user-img">
+                            <md-input-container class="post-comment">
+                                <textarea ng-model="post.msg" max-rows="3" rows="2" md-select-on-focus md-no-autogrow></textarea>
+                            </md-input-container>
+                            <md-icon class="material-icons post-comment-btn" ng-click="addComment(post, post.msg, ind)">send</md-icon>
+                        </div>
+                        <div ng-repeat="coms in community.posts[ind].comments" class="comment-container">
+                            <div class="commenter-infos">
+                                <img src="{{ADDR_USER_IMG}}{{coms.sender.main_image}}" class="commenter-img">
+                                <div class="commenter-name">
+                                    <div style="font-weight: 400;">
+                                        {{coms.sender.first_name}} {{coms.sender.last_name}}
+                                    </div>
+                                    <div class="comment-date">{{coms.date_created | date : 'EEEE dd MMM hh:mma'}}</div>
+                                </div>
+                            </div>
+                            <div style="float: right;">
+                                <div ng-click="editComment(coms)" ng-hide="coms.boolEditCom" ng-if="coms.sender.id == user.id" class="material-icons comment-btn edit">edit</div>
+                                <div ng-click="editComment(coms)" ng-show="coms.boolEditCom" ng-if="coms.sender.id == user.id" class="material-icons comment-btn cancel">cancel</div>
+                                <div ng-click="saveEditComment(post, coms)" ng-show="coms.boolEditCom" ng-if="coms.sender.id == user.id" class="material-icons comment-btn edit">save</div>
+                                <div ng-if="coms.sender.id == user.id" ng-click="deleteComment(post.id, coms.id)" class="material-icons comment-btn delete">delete</div>
+                            </div>
+                            <div ng-hide="coms.boolEditCom" class="comment-content">
+                                {{coms.body}}
+                            </div>
+                            <div ng-show="coms.boolEditCom" class="comment-content">
+                                <md-input-container class="post-comment" style="width: 100%;">
+                                    <textarea ng-model="coms.body" max-rows="3" rows="2" md-select-on-focus md-no-autogrow></textarea>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <!--     <div class="post-box">
+                      <h1>Title</h1>
+                      <p>{{post.body}}</p>
+                      <div style="overflow: auto;">
+                          <ul class="posts-actions">
+                              <li class="post-button">
+                                  <md-icon class="material-icons">question_answer</md-icon>
+                              </li>
+                              <li class="post-button">
+                                  <md-tooltip md-direction="top">
+                                      Not implemented yet !
+                                  </md-tooltip>
+                                  <md-icon class="material-icons">star</md-icon>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="post-box" style="margin-top: 0;">
+                      <div>
+                          <img src="{{user.main_image}}" class="connected-user-img">
+                          <md-input-container class="post-comment">
+                              <textarea ng-model="post.msg" max-rows="3" rows="2" md-select-on-focus md-no-autogrow></textarea>
+                          </md-input-container>
+                          <md-icon class="material-icons post-comment-btn" ng-click="addComment(post, post.msg, ind)">send</md-icon>
+                      </div>
+                      <div ng-repeat="coms in e.posts[ind].coms" class="comment-container">
+                          <div class="commenter-infos">
+                              <img src="./app/static/img/user.jpg" class="commenter-img">
+                              <div class="commenter-name">
+                                  <div>
+                                      {{coms.senderID}}
+                                  </div>
+                                  <div class="comment-date">{{coms.postDate}}</div>
+                              </div>
+                          </div>
+                          <div class="comment-content">
+                              {{coms.body}}
+                          </div>
+                      </div>
+                       <div style="text-align:left;">
+                          <div class="btn-all-comments">
+                              View all
+                          </div>
+                      </div>
+                  </div>-->
+                </div>
+
+                <!-- <div class="community-box">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
+                        felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue
+                        ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus
+                        in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
+                    <div style="overflow: auto;">
+                        <ul class="communities-posts-actions">
+                            <li class="community-button">
+                                <md-icon class="material-icons">question_answer</md-icon>
+                            </li>
+                            <li class="community-button">
+                                <md-tooltip md-direction="top">
+                                    Not implemented yet !
+                                </md-tooltip>
+                                <md-icon class="material-icons">star</md-icon>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+                <!-- <div class="community-box">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
+                        felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue
+                        ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus
+                        in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
+                    <div style="overflow: auto;">
+                        <ul class="communities-posts-actions">
+                            <li class="community-button">Comment
+                                <md-tooltip md-direction="top">
+                                    Not implemented yet !
+                                </md-tooltip>
+                                <md-icon class="material-icons">sms</md-icon>
+                            </li>
+                            <li class="community-button">
+                                <md-tooltip md-direction="top">
+                                    Not implemented yet !
+                                </md-tooltip>
+                                <md-icon class="material-icons">star</md-icon>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+            </md-content>
+        </md-tab>
+        <md-tab label="Pictures">
+            <md-content class="community-content">
+                <div ng-if="community.side_images == undefined || community.side_images.length == 0" class="not-data-msg">There is no picture for this community.</div>
+                <md-grid-list class="communities-pictures-list" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <md-grid-tile ng-repeat="pics in community.side_images" class="community" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2">
+                        <img src="{{ADDR_COMMUNITY_IMG}}{{pics}}">
+                    </md-grid-tile>
+                </md-grid-list>
+            </md-content>
+        </md-tab>
+        <md-tab label="Members">
+            <md-content class="community-content">
+                <md-grid-list class="communities-users-list" md-cols-sm="6" md-cols-md="10" md-cols-gt-md="10" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <md-grid-tile class="community-member" md-rowspan="1" md-colspan="1">
+                        <img src="{{ADDR_USER_IMG}}{{community.admin.main_image}}">
+                        <div class="user-name">
+                            <a href="/#/user/{{community.admin.id}}" style="color:white">{{community.admin.first_name}} {{community.admin.last_name}}</a>
+                        </div>
+                        <md-icon class="material-icons community-adm-icn">stars</md-icon>
+                    </md-grid-tile>
+                    <md-grid-tile ng-click="location.path('/#/user/' + mem.id)" ng-repeat="mem in community.members" class="community-member" md-rowspan="1" md-colspan="1">
+                        <img src="{{ADDR_USER_IMG}}{{mem.main_image}}">
+                        <div class="user-name">
+                            <a href="/#/user/{{mem.id}}" style="color:white">{{mem.first_name}} {{mem.last_name}}</a>
+                        </div>
+                    </md-grid-tile>
+                </md-grid-list>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>

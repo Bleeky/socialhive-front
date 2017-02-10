@@ -1,0 +1,44 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<md-menu md-position-mode="target-left target" md-offset="30 45">
+    <md-icon md-menu-origin ng-click="$mdOpenMenu($event)" class="filters">search</md-icon>
+    <md-menu-content width="3" style="padding: 20px;">
+        <md-menu-item style="min-height: 30px;height: 30px; padding: 5px 0px 5px 0px;">
+            <md-switch ng-model="filter.my" aria-label="My events" style="display: inline-block; vertical-align: middle;margin: 0;padding: 0;">
+                My communities
+            </md-switch>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
+<div class="search-bar-container">
+    <md-input-container md-no-float class="event-search-bar">
+        <input ng-model="query" type="text" placeholder="Search" />
+    </md-input-container>
+</div>
+<div class="communities-list">
+    <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="16px">
+        <md-grid-tile ng-repeat="c in communities | filter:query | filter: filter.my || c.is_member" class="community" md-rowspan="1" md-colspan="2">
+            <img ng-if="c.main_image" src="{{ADDR_COMMUNITY_IMG}}{{c.main_image}}">
+            <img ng-if="!c.main_image" src="./app/static/img/placeholder-cover.png">
+            <a class="community-cover" href="/#/community/{{c.id}}" style="color:white">
+                <div class="community-infos">
+                    <div class="name">
+                        {{c.name}}
+                    </div>
+                </div>
+                <div class="community-infos">
+                    <div class="members">
+                        {{c.members.length + 1}} MEMBERS
+                    </div>
+                </div>
+            </a>
+            <a href="/#/community/{{c.id}}">
+                <md-icon class="material-icons select-community-button">send</md-icon>
+            </a>
+        </md-grid-tile>
+    </md-grid-list>
+</div>
+<a href="/#/community/create">
+    <md-icon class="material-icons btn-create">add</md-icon>
+</a>

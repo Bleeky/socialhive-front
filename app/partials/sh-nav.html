@@ -1,0 +1,129 @@
+<div class="loading-bar-container" ng-show="progress">
+  <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<header class="nav-bar-container">
+    <div class="nav-content">
+
+        <div class="nav-content-left logout" ng-show="me == undefined">
+            <div class="logo-container" style="display:inline-block; vertical-align: middle">
+                <img src="./app/static/img/logo-with-hor-02.png" style="height: 100%;" />
+            </div>
+        </div>
+        <div class="nav-content-left" ng-show="me != undefined">
+            <div class="logo-container" style="display:inline-block; vertical-align: middle">
+                <a ng-href="/#/event/list"><img src="./app/static/img/sh-notext.png" style="height: 100%;" /></a>
+            </div>
+            <div style="display:inline-block; vertical-align: middle" class="hvr-underline-from-left">
+                <a ng-href="/#/event/list">
+              EVENTS</a>
+            </div>
+            <div ng-if="me.is_sponsor != true" style="display:inline-block; vertical-align: middle" class="hvr-underline-from-left">
+                <a ng-href="/#/community/list">
+                COMMUNITIES
+              </a>
+            </div>
+            <div ng-if="me.is_sponsor != true" style="display:inline-block; vertical-align: middle" class="hvr-underline-from-left">
+                <a ng-href="/#/user/list">
+                USERS
+              </a>
+            </div>
+            <div ng-if="me.is_sponsor == true" style="display:inline-block; vertical-align: middle" class="hvr-underline-from-left">
+                <a ng-href="/#/user/sponsorings">
+                SPONSORINGS
+              </a>
+            </div>
+        </div>
+        <div class="nav-content-right" ng-show="me != undefined">
+            <ul>
+                <li ng-if="me.is_sponsor != true" ng-click="showOptions();">
+                    <div class="ion-android-notifications nav-icon" />
+                    <div ng-show="panel" class="nav-dropdown">
+                        <div class="notif-header">
+                            <p style="text-align: center;">Notifications</p>
+                        </div>
+                        <div class="notifs-container">
+                            <div ng-if="notifications.length > 0" class="notif-container" ng-repeat="n in notifications | orderBy: '-date_created'">
+                              <div ng-if="n.type != ''">
+                                <div ng-include="'./app/partials/notifications/'+n.type+'.html'"></div>
+                              </div>
+                                <!-- <div>
+                                    <p class="notif-text">
+                                        <b class="clickable-notif">{{n.user.first_name}} {{n.user.last_name}}</b> {{n.txt}}<b class="clickable-notif"></b>
+                                    </p>
+                                    <p class="notif-time">
+                                        <!-- <md-icon class="material-icons notif-hourglass" style="display: inline">hourglass_empty</md-icon> -->
+                                        <!-- <span style="display: inline-block; vertical-align: middle;">
+                                {{n.date | date : 'EEEE dd MMM hh:mm'}} ago.
+                              </span>
+                                    </p>
+                                </div> -->
+                            </div>
+                            <div ng-if="notifications.length == 0" style="text-align: center;padding: 45px;color: #546E7A;">
+                              No notifications
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="me.is_sponsor != true">
+                    <a ng-href="/#/message">
+                        <div class="ion-chatboxes nav-icon" />
+                    </a>
+                </li>
+                <li>
+                    <a ng-href="/#/user/{{me.id}}">
+                      <img ng-if="me.main_image != ''" src="{{ADDR_USER_IMG}}{{me.main_image}}" class="nav-user-avatar" />
+                      <img ng-if="me.main_image == ''" src="./app/static/img/placeholder-user.png" class="nav-user-avatar" />
+                    </a>
+                </li>
+                <li ng-click="logout()">
+                    <div class="ion-power nav-icon" />
+                </li>
+            </ul>
+        </div>
+        <div class="nav-content-right logout" ng-hide="me != undefined">
+            <form name="signin" class="header-form-login">
+                <div layout>
+                    <md-input-container md-no-float>
+                        <input ng-model="email" required type="email" placeholder="Email">
+                    </md-input-container>
+                    <md-input-container md-no-float>
+                        <input ng-model="password" type="password" placeholder="Password">
+                    </md-input-container>
+                    <md-button type="submit" ng-click="login()" class="login-btn">
+                        Log In
+                    </md-button>
+                </div>
+            </form>
+        </div>
+
+        <div class="feedback-btn">
+            <div class="ion-paper-airplane nav-icon" style="display: inline-block; vertical-align: middle;" />
+            <div style="display: inline-block; vertical-align: middle;" ng-click="showPromptFeedback($event)">
+                FEEDBACK
+            </div>
+        </div>
+        <div style="visibility: hidden; z-index: 900;">
+            <div class="md-dialog-container" id="myStaticDialog">
+                <md-dialog style="padding: 20px; width: 50%;">
+                    <img src="./app/static/img/sh-notext.png" style="float: left;height: 50px; width: 50px; position: absolute;" />
+
+                    <div style="text-align: center; font-weight: 400; font-size: 19px; padding: 5px;">
+                        Your opinion is precious to us.
+                    </div>
+                    <div style="text-align: center; font-weight: 300; font-size: 15px;">
+                        Tell us what you think !
+                    </div>
+                    <md-input-container class="md-block">
+                        <label>Your opinion</label>
+                        <textarea ng-model="feedbackMSG" rows="5" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <div style="display: inline-block; vertical-align: middle;">
+                        <div ng-click="feedback()" class="ion-paper-airplane feedback-dialog-btn" />
+                        <div ng-click="closeDialog()" class="ion-close-round feedback-dialog-btn" />
+                    </div>
+                </md-dialog>
+            </div>
+        </div>
+
+    </div>
+</header>

@@ -1,0 +1,21 @@
+.stats-page {}
+
+.stats-page .stats-content {
+    padding-bottom: 30px;
+}
+
+@media screen and (min-width: 960px) {
+    .stats-page .stats-content {
+        padding-left: 10em;
+        padding-right: 10em;
+    }
+}
+
+.stats-page .stats-content .stats-block {
+    margin-top: 16px;
+}
+
+.stats-page .stats-content .stats-block .stats-title {
+    text-align: center;
+    font-size: 22px;
+}

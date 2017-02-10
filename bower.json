@@ -1,0 +1,23 @@
+{
+  "name": "front-end-socialhive",
+  "version": "0.0.1",
+  "homepage": "none",
+  "description": "socialhive",
+  "keywords": [
+    "web-app"
+  ],
+  "authors": [
+    "Quentin Hausser",
+    "Felix Fabrega"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "ngGallery": "*",
+    "ngmap": "^1.16.7",
+    "angular-material-datetimepicker": "^1.4.0",
+    "angular-chart.js": "^0.10.2"
+  },
+  "resolutions": {
+    "angular": "1.5.5"
+  }
+}

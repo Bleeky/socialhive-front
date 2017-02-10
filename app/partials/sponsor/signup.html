@@ -1,0 +1,76 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="login-page" style="height: 100%;">
+    <style>
+        .login-page .login-header:before {
+            background: url('./app/static/img/sponsor-back.jpg') no-repeat top center;
+            background-size: cover;
+            background-position: 50% 35%;
+            background-repeat: no-repeat no-repeat;
+        }
+    </style>
+    <div class="login-header" style="min-height: 100%;">
+        <div style="padding: 50px; text-align: center; position: relative;">
+            <div>
+                <div class="sh-moto-text">Every great event needs sponsors.</div>
+                <div class="sh-moto-text">Why not become one ?</div>
+            </div>
+        </div>
+        <div style="text-align: -webkit-center">
+            <div class="sh-login-box">
+                <div layout="column" style="text-align: initial;">
+                    <md-input-container>
+                        <label>Email</label>
+                        <input ng-model="new.email" required type="email" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Repeat Email</label>
+                        <input ng-model="emailCheck" ng-pattern="new.email" type="email" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Password</label>
+                        <input ng-model="new.password" type="password" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Name</label>
+                        <input ng-model="new.first_name" required>
+                    </md-input-container>
+                    <div layout="row" layout-align="center center">
+                        <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="img-picker-container">
+                            <md-button ngf-select ng-model="picFile" accept="image/*" class="img-picker md-fab md-mini" ng-change="showImgDialog($event)">
+                                <md-icon class="material-icons">insert_photo</md-icon>
+                            </md-button>
+                            <img ng-show="croppedDataUrl && showCropped" ng-src="{{croppedDataUrl}}" style="height: 200px;border-radius: 50%;" />
+                            <!-- <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" result-image-size="{w:400,h:400}" result-image-quality "1"></img-crop> -->
+                        </div>
+                    </div>
+                </div>
+                <div layout layout-align="center center" style="margin-top: 15px;">
+                    <md-button type="submit" ng-click="signup()" class="md-raised md-primary signup-validate">
+                        Sign Up
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <div style="visibility: hidden; z-index: 900;">
+            <div class="md-dialog-container" id="imagePop">
+                <md-dialog style="padding: 20px; width: 25%; height: 250px;">
+                    <!-- <img src="./app/static/img/sh-notext.png" style="float: left;height: 50px; width: 50px; position: absolute;" /> -->
+                    <img-crop image="picFile  | ngfDataUrl" url-blob="croppedDataUrlTmp" result-image="croppedDataUrl" result-image-size="{w:400,h:400}" result-image-quality "1"></img-crop>
+                    <div style="display: inline-block; vertical-align: middle; text-align; text-align: center; margin-top: 10px;">
+                        <div ng-click="validateImg()" class="ion-checkmark-round cropper-pop-dialog-btn" />
+                        <div ng-click="closeDialog()" class="ion-close-round cropper-pop-dialog-btn" />
+                    </div>
+                </md-dialog>
+            </div>
+        </div>
+
+        <footer class="sh-footer">
+            <div class="sh-footer-content">
+                Copyright (c) 2016 SocialHive All Rights Reserved.
+            </div>
+        </footer>
+
+    </div>
+</div>

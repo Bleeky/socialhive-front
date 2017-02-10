@@ -1,0 +1,95 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="community-page">
+    <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+        <md-tab label="Informations">
+            <div class="community-content">
+                <div style="margin:16px;">
+                    <form>
+                        <div class="box">
+                            <md-icon class="material-icons top-left-button" ngf-select ng-model="picFile" file-model="myFile" accept="image/*">insert_photo</md-icon>
+                            <div style="height: 250px">
+                                <div class="community-create-box-title" ng-show="!picFile">
+                                    <md-icon class="material-icons box-title-icn">insert_photo</md-icon>
+                                    <div class="title">Cover Picture</div>
+                                </div>
+                                <img-crop image="picFile  | ngfDataUrl" result-image="community.croppedDataUrl" result-image-size="{w:1280,h:548}" area-type="rectangle" result-image-quality "1" aspect-ratio="21/9"></img-crop>
+                            </div>
+                        </div>
+                        <div class="box profile">
+                            <md-icon class="material-icons top-left-button" ngf-select ng-model="picFile2" file-model="myFile2" accept="image/*">insert_photo</md-icon>
+                            <div style="height: 250px;">
+                                <div class="community-create-box-title" ng-show="!picFile2">
+                                    <md-icon class="material-icons box-title-icn">insert_photo</md-icon>
+                                    <div class="title">Profile Picture</div>
+                                </div>
+                                <img-crop image="picFile2  | ngfDataUrl" result-image="community.croppedDataUrl2" result-image-size="{w:400,h:400}" result-image-quality "1"></img-crop>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="community-create-box-title">
+                                <md-icon class="material-icons box-title-icn">import_contacts</md-icon>
+                                <div class="title">General informations</div>
+                            </div>
+                            <md-content class="md-padding">
+                                <div layout="column">
+                                    <md-input-container>
+                                        <label>Name</label>
+                                        <input ng-model="community.name" required type="text">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>Description</label>
+                                        <textarea ng-model="community.description" md-maxlength="400" max-rows="4" rows="4" md-select-on-focus md-no-autogrow></textarea>
+                                    </md-input-container>
+                                </div>
+                            </md-content>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab label="Members">
+            <div class="community-content">
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">mail</md-icon>
+                    <div class="friends-participants">PENDING INVITATIONS</div>
+                    <div class="participation-status">0</div>
+                </div>
+                <md-input-container md-no-float class="md-block">
+                    <input ng-model="invite.query" type="text" placeholder="Search SocialHiver">
+                </md-input-container>
+                <md-list class="fixedRows">
+                    <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in guests">
+                        <img ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" class="md-avatar" alt="{{contact.first_name}}" />
+                        <div class="md-list-item-text compact community-inline">
+                            <h3>{{contact.first_name}} {{contact.last_name}}</h3>
+                            <p></p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+                <div class="not-data-msg" ng-if="guest.length == 0">No pending invitation.</div>
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">mail</md-icon>
+                    <div class="friends-participants">NEW INVITATIONS</div>
+                </div>
+                <md-input-container md-no-float class="md-block">
+                    <input ng-model="invite.query" type="text" placeholder="Search SocialHiver">
+                </md-input-container>
+                <md-list class="fixedRows">
+                    <md-list-item class="md-2-line contact-item" ng-hide="contact.sent || contact.id == user.id" ng-repeat="(index, contact) in allContacts | filter:invite.query | filter:sponsorFilter">
+                        <img ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" class="md-avatar" alt="{{contact.first_name}}" />
+                        <div class="md-list-item-text compact community-inline">
+                            <h3 style="display:inline">{{contact.first_name}}</h3> <h3 ng-if="!contact.is_sponsor" style="display:inline">{{contact.last_name}}</h3>
+                            <p></p>
+                        </div>
+                        <div class="community-inline">
+                            <md-icon class="material-icons user-action-btn" ng-click="guests.push(contact);contact.sent=true">add</md-icon>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </md-tab>
+    </md-tabs>
+    <md-icon class="material-icons create-community" ng-click="createcommunity()">save</md-icon>
+</div>

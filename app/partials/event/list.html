@@ -1,0 +1,66 @@
+<div class="loading-bar-container" ng-show="isLoading">
+  <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div>
+    <md-menu md-position-mode="target-left target" md-offset="30 45">
+        <md-icon md-menu-origin ng-click="$mdOpenMenu($event)" class="filters">search</md-icon>
+        <md-menu-content width="3" style="padding: 20px;">
+            <md-menu-item style="min-height: 30px;height: 30px; padding: 5px 0px 5px 0px;">
+                <md-switch ng-model="filters.organized" aria-label="My events" style="display: inline-block; vertical-align: middle;margin: 0;padding: 0;">
+                    My events
+                </md-switch>
+            </md-menu-item>
+            <md-menu-item style="min-height: 30px;height: 30px; padding: 5px 0px 5px 0px;">
+                <md-switch ng-model="filters.participating" aria-label="My events" style="display: inline-block; vertical-align: middle;margin: 0;padding: 0;">
+                    Participating
+                </md-switch>
+            </md-menu-item>
+            <md-menu-item style="min-height: 30px;height: 30px; padding: 5px 0px 5px 0px;">
+                <md-switch ng-model="filters.starred" aria-label="My events" style="display: inline-block; vertical-align: middle;margin: 0;padding: 0;">
+                    Interested in
+                </md-switch>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+    <div class="search-bar-container">
+        <md-input-container md-no-float class="event-search-bar">
+            <input ng-model="query" type="text" placeholder="Search"/>
+        </md-input-container>
+    </div>
+
+    <div class="home-events-list">
+      <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height-gt-md="1:1" md-row-height="2:2" md-row-height-gt-md="2:2" md-gutter="12px" md-gutter-gt-sm="16px">
+          <md-grid-tile class="event" md-rowspan="1" md-colspan="2" ng-repeat="e in list | filter:search | filter:SHFilters">
+              <img ng-if="e.main_image" src="{{ADDR_EVENT_IMG}}{{e.main_image}}" class="cover-picture">
+              <img ng-if="!e.main_image" src="./app/static/img/placeholder-cover.png" class="cover-picture">
+              <a class="event-cover" href="/#/event/{{e.id}}" style="color:white">
+                  <div class="event-name">
+                      {{e.name}}
+                  </div>
+                  <hr class="name-separation">
+                  <div class="event-infos">
+                      <div class="material-icons event-infos-icon">schedule</div>
+                      <div class="event-infos-field">{{e.start_date | date : 'EEEE dd MMM'}}</div>
+                  </div>
+                  <div class="event-infos">
+                      <div class="material-icons event-infos-icon">place</div>
+                      <div class="event-infos-field">{{e.location.city}}</div>
+                  </div>
+              </a>
+              <a class="event-organiser" href="/#/user/{{e.creator.id}}">
+                  <img ng-if="e.creator.main_image" class="user-avatar" src="{{ADDR_USER_IMG}}{{e.creator.main_image}}" />
+                  <img ng-if="!e.creator.main_image" class="user-avatar" src="./app/static/img/placeholder-user.png" />
+                  <div class="user-name">{{e.creator.first_name||"John"}} {{e.creator.last_name||"Doe"}}</div>
+              </a>
+              <md-icon ng-if="!e.starred" ng-click="star(e)" class="material-icons save-event">star_border</md-icon>
+              <md-icon ng-if="e.starred" ng-click="star(e)" class="material-icons save-event">star</md-icon>
+              <a href="/#/event/{{e.id}}">
+                  <md-icon class="material-icons select-event-button">send</md-icon>
+              </a>
+          </md-grid-tile>
+      </md-grid-list>
+    </div>
+    <a ng-if="user.is_sponsor != true" href="/#/event/create">
+        <md-icon class="material-icons btn-create">add</md-icon>
+    </a>
+</div>

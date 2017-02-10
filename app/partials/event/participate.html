@@ -1,0 +1,69 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="event-page">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    <style ng-if="e.main_image">
+        .event-page .event-header:before {
+            background: url('{{ADDR_EVENT_IMG}}{{e.main_image}}') no-repeat top center;
+            background-size: cover;
+            background-position: 50% 35%;
+            background-repeat: no-repeat no-repeat;
+        }
+    </style>
+    <style ng-if="!e.main_image">
+        .event-page .event-header:before {
+            background: url('./app/static/img/placeholder-cover.png') no-repeat top center;
+            background-size: cover;
+            background-position: 50% 35%;
+            background-repeat: no-repeat no-repeat;
+        }
+    </style>
+    <div class="event-header">
+        <div class="event-header-content">
+            <div class="event-name">{{e.name}}</div>
+            <div class="event-action-button event-join" ng-click="send()">SEND REQUEST</div>
+        </div>
+    </div>
+    <div class="event-content">
+        <div style="box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24); margin: 16px;text-align: center;">
+            <md-input-container md-no-float style="width: 90%; margin: 16px;">
+                <textarea ng-model="message" md-maxlength="85" max-rows="5" rows="4" md-select-on-focus="" aria-label="Message" placeholder="Message" md-no-autogrow></textarea>
+            </md-input-container>
+        </div>
+        <md-grid-list class="event-needs-list" md-cols-sm="2" md-cols-md="6" md-cols-gt-md="6" md-row-height="180px" md-gutter="15px" md-gutter-gt-sm="15px">
+            <md-grid-tile md-rowspan="1" md-colspan="2" class="need-box" ng-repeat="n in e.needs">
+                <div style="width: 100%;">
+                    <div style="display: flex; width: 100%;">
+                        <div class="need-content">
+                            <div class="need-name">
+                                {{n.name}}
+                            </div>
+                            <div class="need-description">
+                                {{n.description}}
+                            </div>
+                        </div>
+                        <div class="need-chart">
+                            <canvas id="doughnut" class="chart chart-doughnut chart-overload" chart-data="n.chart" chart-colours="colors" chart-labels="labels" chart-options="options">
+                            </canvas>
+                            <div style="text-align: center;">{{n.chart[0]}}/{{n.chart[2]}}</div>
+                        </div>
+                    </div>
+                    <div style="width: 100%; text-align: center;">
+                        <md-icon class="material-icons participate-need-btn" ng-click="subParticipation(n.chart);">remove</md-icon>
+                        <md-input-container style="display: inline-block; max-width: 80px; vertical-align: middle;">
+                            <input aria-label="Offered" type="number" ng-model="n.chart[3]" ng-change="updateNeed(n.chart)" style="text-align: center;" min="0" max="n.chart[2]">
+                        </md-input-container>
+                        <md-icon class="material-icons participate-need-btn" ng-click="addParticipation(n.chart);">add</md-icon>
+                    </div>
+                </div>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+</div>

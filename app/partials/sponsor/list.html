@@ -1,0 +1,39 @@
+<div class="sponsorings-page">
+    <div class="profile-content">
+      <div ng-if="me.pendingSponsoring.length == 0 && me.sponsoredEvents.length == 0" class="not-data-msg">There is no sponsored event by you.</div>
+        <md-grid-list ng-if="me.pendingSponsoring.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+            <div class="friends-participating-box">
+                <md-icon class="material-icons">drafts</md-icon>
+                <div class="friends-participants">PENDINGS</div>
+                <div class="participation-status">{{me.pendingSponsoring.length}}</div>
+            </div>
+            <md-grid-tile ng-repeat="e in me.pendingSponsoring" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2" class="event-card">
+                <img src="{{ADDR_EVENT_IMG}}{{e.event.main_image}}" class="event-img">
+                <div class="event-infos">
+                    <div class="event-title">{{e.event.name}}</div>
+                </div>
+                <a href="/#/event/{{e.event.id}}">
+                    <md-icon class="material-icons select-event">send</md-icon>
+                </a>
+                <md-icon class="material-icons select-event" style="left:0;" ng-click="showSponsoring(e)">pageview</md-icon>
+            </md-grid-tile>
+        </md-grid-list>
+        <md-grid-list ng-if="me.sponsoredEvents.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+            <div class="friends-participating-box">
+                <md-icon class="material-icons">check</md-icon>
+                <div class="friends-participants">VALIDATED</div>
+                <div class="participation-status">{{me.sponsoredEvents.length}}</div>
+            </div>
+            <md-grid-tile ng-repeat="e in me.sponsoredEvents" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2" class="event-card">
+                <img src="{{ADDR_EVENT_IMG}}{{e.main_image}}" class="event-img">
+                <div class="event-infos">
+                    <div class="event-title">{{e.name}}</div>
+                </div>
+                <a href="/#/event/{{e.id}}">
+                    <md-icon class="material-icons select-event">send</md-icon>
+                </a>
+                <!-- <md-icon class="material-icons select-event" style="left:0;" ng-click="showSponsoring(e.sponsorships)">pageview</md-icon> -->
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+</div>

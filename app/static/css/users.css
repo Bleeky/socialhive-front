@@ -1,0 +1,134 @@
+.all-users-list {
+    position: relative;
+    margin: 16px;
+}
+
+@media screen and (min-width: 960px) {
+    .all-users-list {
+        margin-left: 10em;
+        margin-right: 10em;
+    }
+}
+
+.hr-sep {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.all-users-list .user-name {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    /*width: 100%;*/
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.all-users-list .user {
+    border-radius: 50%;
+    background-color: #222;
+    overflow: hidden;
+    -webkit-transition: none;
+    - transition: none;
+    transition: none;
+}
+
+.all-users-list .user a {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.all-users-list .user:hover .user-name {
+    display: block;
+    -webkit-transition: 0.1s all ease;
+    - transition: 0.1s all ease;
+    transition: 0.1s all ease;
+    color: #fff;
+}
+
+.all-users-list .user:hover {
+    background-color: #000;
+    -webkit-transition: 0.1s all ease;
+    - transition: 0.1s all ease;
+    transition: 0.1s all ease;
+}
+
+
+/*.all-users-list .user:hover img {
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}*/
+
+.all-users-list .user img {
+    opacity: 0.4;
+    /*box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);*/
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.all-users-list .user .user-actions-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: #ff9800;
+    overflow: visible !important;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    min-height: 10px;
+    font-size: 10px;
+    line-height: 10px;
+    padding: 10px;
+}
+
+
+/*@media screen and (max-width: 630px) {
+    .users-profiles .user-actions-btn {
+        top: 0;
+        right: 0;
+    }
+}*/
+
+.all-users-list .user .user-actions-btn:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+@media screen and (min-width: 960px) and (max-width: 1100px) {
+    .all-users-list .user .user-name {
+        font-size: 14px;
+    }
+}

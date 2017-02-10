@@ -1,0 +1,557 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="profile-page">
+    <style>
+        .profile-page .profile-header:before {
+            background: url('{{ADDR_USER_IMG}}{{user.cover_image}}') no-repeat top center;
+            background-size: cover;
+            background-position: 50% 35%;
+            background-repeat: no-repeat no-repeat;
+        }
+    </style>
+    <div class="profile-header">
+        <div class="profile-header-infos">
+            <div style="position: relative">
+                <img ng-if="user.main_image" src="{{ADDR_USER_IMG}}{{user.main_image}}" class="profile-picture">
+                <img ng-if="!user.main_image" src="./app/static/img/placeholder-user.png" class="profile-picture">
+                <div ng-if="user.id != me.id && !user.gave_karma" ng-click="unendorse()" class="ion-thumbsdown unendorse-btn" role="button" tabindex="0" />
+                <div ng-if="user.id != me.id && !user.gave_karma" ng-click="endorse()" class="ion-thumbsup endorse-btn" role="button" tabindex="0" />
+                <div ng-if="!user.karma || user.karma >= 0" class="ion-android-happy recommended-user-btn" role="button" tabindex="0"></div>
+                <div ng-if="user.karma && user.karma < 0" class="ion-android-sad not-recommended-user-btn" role="button" tabindex="0"></div>
+            </div>
+            <div class="user-infos">
+                <div class="user-name">
+                    {{user.first_name}}
+                    <div ng-if="user.last_name != 'undefined'" style="display:inline">{{user.last_name}}</div>
+                    <div ng-if="user.is_sponsor" class="sponsor-indic">SPONSOR</div>
+                </div>
+                <div ng-if="user.private != true" class="user-experience">
+                    <span class="user-level">LEVEL {{user.level}}</span>
+                    <md-progress-linear md-mode="determinate" value="{{(user.current_xp*100)/user.next_level_xp}}" class="experience-progress"></md-progress-linear>
+                    <span class="user-level">{{user.current_xp}}/{{user.next_level_xp}} XP</span>
+                </div>
+                <div class="user-description">{{user.title}}
+                </div>
+                <div ng-if="user.id != me.id && user.is_friend != true && user.pending != true && user.is_sponsor != true" class="user-action">
+                    <md-icon class="material-icons add-friend-icn">person_add</md-icon>
+                    <span style="vertical-align: middle;display: inline;font-weight: 400;" ng-click="addFriend()">FRIEND</span>
+                </div>
+                <div ng-if="user.id != me.id && user.is_friend != true && user.pending == true && user.is_sponsor != true" class="user-action">
+                    <md-icon class="material-icons add-friend-icn">person_add</md-icon>
+                    <span style="vertical-align: middle;display: inline;font-weight: 400;">Invitation sent</span>
+                </div>
+                <div ng-if="user.id != me.id && user.is_sponsor != true" class="user-action" ng-click="createConv()">
+                    <md-icon class="material-icons add-friend-icn">forum</md-icon>
+                    <span style="vertical-align: middle;display: inline;font-weight: 400;">MESSAGE</span>
+                </div>
+            </div>
+            <div ng-if="user.private != true && user.is_sponsor != true" class="user-stats">
+                <div class="user-stat">
+                    {{user.badgesGained + 0}} BADGES
+                </div>
+                <div class="user-stat">
+                    {{user.communitiesOwned.length + user.communities.length + 0}} COMMUNITIES
+                </div>
+                <div class="user-stat">
+                    {{user.posts.length + 0}} POSTS
+                </div>
+                <div class="user-stat">
+                    {{user.eventAttended.length + user.eventOrganized.length + 0}} EVENTS
+                </div>
+            </div>
+            <a href="/#/user/admin" ng-if="user.id == me.id">
+                <md-icon class="material-icons profile-special-btn edit-profile" style="">settings</md-icon>
+            </a>
+        </div>
+    </div>
+    <div ng-if="user.private == true" class="not-data-msg">This user is private.</div>
+    <md-tabs ng-if="user.private != true" md-dynamic-height md-border-bottom md-center-tabs>
+        <md-tab label="Overview">
+            <div class="profile-content">
+                <div class="post-box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">face</md-icon>
+                        <div class="box-title">
+                            Description
+                        </div>
+                    </div>
+                    <div ng-if="!user.bio" class="not-data-msg">None</div>
+                    <p>{{user.bio}}</p>
+                </div>
+                <div ng-if="user.is_sponsor != true" class="post-box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">lightbulb_outline</md-icon>
+                        <div class="box-title">
+                            Last event organised
+                        </div>
+                    </div>
+                    <div ng-if="user.eventOrganized.length == 0" class="not-data-msg">None</div>
+                    <md-grid-list ng-if="user.eventOrganized.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                        <md-grid-tile class="event-card" md-rowspan="1" md-colspan="2" ng-repeat="e in user.eventOrganized | limitTo: 1">
+                            <img ng-if="e.main_image" src="{{ADDR_EVENT_IMG}}{{e.main_image}}">
+                            <img ng-if="!e.main_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                            <a ng-if="user.id == me.id" href="/#/event/admin/{{e.id}}">
+                                <md-icon class="material-icons adm-action-btn-in admin-event">security</md-icon>
+                            </a>
+                            <div class="event-infos">
+                                <!-- <md-icon class="material-icons event-icon">{{e.location.city}}</md-icon> -->
+                                <div class="event-title">{{e.name}}</div>
+                                <div class="event-type">{{e.type}}</div>
+                                <div class="event-date">{{e.start_date | date : 'EEEE dd MMM'}}</div>
+                            </div>
+                            <a href="/#/event/{{e.id}}">
+                                <md-icon class="material-icons select-event">send</md-icon>
+                            </a>
+                        </md-grid-tile>
+                    </md-grid-list>
+                </div>
+                <div ng-if="user.is_sponsor != true" class="post-box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">event</md-icon>
+                        <div class="box-title">
+                            Last event attented
+                        </div>
+                    </div>
+                    <div ng-if="user.eventAttended.length == 0" class="not-data-msg">None</div>
+                    <md-grid-list ng-if="user.eventAttended.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                        <md-grid-tile class="event-card" md-rowspan="1" md-colspan="2" ng-repeat="e in user.eventAttended | limitTo: 1">
+                            <img src="{{ADDR_EVENT_IMG}}{{e.main_image}}">
+                            <div class="event-infos">
+                                <div class="event-title">{{e.name}}</div>
+                                <div class="event-type">{{e.type}}</div>
+                                <div class="event-date">{{e.start_date | date : 'EEEE dd MMM'}}</div>
+                            </div>
+                            <a href="/#/event/{{e.id}}">
+                                <md-icon class="material-icons select-event">send</md-icon>
+                            </a>
+                        </md-grid-tile>
+                    </md-grid-list>
+                </div>
+                <div ng-if="user.is_sponsor == true" class="post-box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">event</md-icon>
+                        <div class="box-title">
+                            Last sponsored event
+                        </div>
+                    </div>
+                    <div ng-if="user.sponsoredEvents.length == 0" class="not-data-msg">None</div>
+                    <md-grid-list ng-if="user.sponsoredEvents.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                        <md-grid-tile class="event-card" md-rowspan="1" md-colspan="2" ng-repeat="e in user.sponsoredEvents | limitTo: 1">
+                            <img src="{{ADDR_EVENT_IMG}}{{e.main_image}}">
+                            <div class="event-infos">
+                                <div class="event-title">{{e.name}}</div>
+                                <div class="event-type">{{e.type}}</div>
+                                <div class="event-date">{{e.start_date | date : 'EEEE dd MMM'}}</div>
+                            </div>
+                            <a href="/#/event/{{e.id}}">
+                                <md-icon class="material-icons select-event">send</md-icon>
+                            </a>
+                        </md-grid-tile>
+                    </md-grid-list>
+                </div>
+                <div class="post-box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">create</md-icon>
+                        <div class="box-title">
+                            Last post
+                        </div>
+                    </div>
+                    <div ng-if="user.posts.length == 0" class="not-data-msg">None</div>
+                    <div ng-repeat="(ind, post) in user.posts | limitTo: 1">
+                        <div class="post-box">
+                            <p style="float: right; font-size: 15px; font-style: italic;">{{post.date_created | date : 'EEEE dd MMM'}}</p>
+                            <p style="content: '';display: block; clear: both;">{{post.body}}</p>
+                            <div style="overflow: auto;">
+                                <ul class="posts-actions">
+                                    <li class="post-button">
+                                        <md-tooltip md-direction="top">
+                                            Not implemented yet !
+                                        </md-tooltip>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab ng-if="user.is_sponsor != true" label="Events">
+            <div class="profile-content">
+              <div ng-if="user.id == me.id && user.eventAttended.length == 0 && user.eventOrganized.length == 0 && user.eventAttending.length == 0 && eventInvitations.length == 0 && user.eventStarred.length == 0" class="not-data-msg">There is no event.</div>
+              <div ng-if="user.id != me.id && user.eventAttended.length == 0 && user.eventOrganized.length == 0 && user.eventAttending.length == 0 && user.eventStarred.length == 0" class="not-data-msg">There is no event.</div>
+                <md-grid-list class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <div ng-if="user.eventStarred.length > 0" class="friends-participating-box">
+                        <md-icon class="material-icons">stars</md-icon>
+                        <div class="friends-participants">FAVORITES</div>
+                        <div class="participation-status">{{user.eventStarred.length ? user.eventStarred.length : 0}}</div>
+                    </div>
+                    <md-grid-tile ng-repeat="e in user.eventStarred" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2" class="event-card">
+                        <img ng-if="e.main_image" src="{{ADDR_EVENT_IMG}}{{e.main_image}}" class="event-img">
+                        <img ng-if="!e.main_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                        <!-- <md-icon class="material-icons adm-action-btn-in admin-event">security</md-icon> -->
+                        <div class="event-infos">
+                            <div class="event-title">{{e.name}}</div>
+                            <div class="event-date">
+                                {{e.start_date | date : 'EEEE dd MMM'}}
+                            </div>
+                        </div>
+                        <a href="/#/event/{{r.id}}">
+                            <md-icon class="material-icons select-event">send</md-icon>
+                        </a>
+                        <md-icon ng-if="user.id == me.id" ng-click="unstar(e)" class="material-icons select-event" style="left:0;">star</md-icon>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list ng-if="eventInvitations" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <div ng-if="eventInvitations.length > 0" class="friends-participating-box">
+                        <md-icon class="material-icons">drafts</md-icon>
+                        <div class="friends-participants">INVITATIONS</div>
+                        <div class="participation-status">{{eventInvitations.length ? eventInvitations.length : 0}}</div>
+                    </div>
+                    <md-grid-tile ng-repeat="r in eventInvitations" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2" class="event-card">
+                        <img ng-if="r.event.main_image" src="{{ADDR_EVENT_IMG}}{{r.event.main_image}}" class="event-img">
+                        <img ng-if="!r.event.main_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                        <!-- <md-icon class="material-icons adm-action-btn-in admin-event">security</md-icon> -->
+                        <div class="event-infos">
+                            <div class="event-title">{{r.event.name}}</div>
+                            <div class="event-date">
+                                {{r.date | date : 'EEEE dd MMM'}}
+                            </div>
+                        </div>
+                        <a href="/#/event/{{r.event.id}}">
+                            <md-icon class="material-icons select-event">send</md-icon>
+                        </a>
+                        <md-icon class="material-icons select-event" style="left:0;" ng-click="refuse(r)">clear</md-icon>
+                        <md-icon class="material-icons select-event" style="left:40px;" ng-click="accept(r)">done</md-icon>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list ng-if="user.eventAttending.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <div class="friends-participating-box">
+                        <md-icon class="material-icons">event</md-icon>
+                        <div class="friends-participants">ATTENDING</div>
+                        <div class="participation-status">{{user.eventAttending.length ? user.eventAttending.length : 0}}</div>
+                    </div>
+                    <md-grid-tile class="event-card" md-rowspan="1" md-colspan="2" ng-repeat="e in user.eventAttending">
+                        <img ng-if="e.main_image" src="{{ADDR_EVENT_IMG}}{{e.main_image}}">
+                        <img ng-if="!e.main_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                        <div class="event-infos">
+                            <!-- <md-icon class="material-icons event-icon">{{e.location.city}}</md-icon> -->
+                            <div class="event-title">{{e.name}}</div>
+                            <div class="event-type">{{e.type}}</div>
+                            <div class="event-date">{{e.start_date | date : 'EEEE dd MMM'}}</div>
+                        </div>
+                        <a href="/#/event/{{e.id}}">
+                            <md-icon class="material-icons select-event">send</md-icon>
+                        </a>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list ng-if="user.eventOrganized.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <div class="friends-participating-box">
+                        <md-icon class="material-icons">lightbulb_outline</md-icon>
+                        <div class="friends-participants">ORGANISED</div>
+                        <div class="participation-status">{{user.eventOrganized.length ? user.eventOrganized.length : 0}}</div>
+                    </div>
+                    <md-grid-tile class="event-card" md-rowspan="1" md-colspan="2" ng-repeat="e in user.eventOrganized">
+                        <img ng-if="e.main_image" src="{{ADDR_EVENT_IMG}}{{e.main_image}}">
+                        <img ng-if="!e.main_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                        <a ng-if="user.id == me.id" href="/#/event/admin/{{e.id}}">
+                            <md-icon class="material-icons adm-action-btn-in admin-event">security</md-icon>
+                        </a>
+                        <div class="event-infos">
+                            <!-- <md-icon class="material-icons event-icon">{{e.location.city}}</md-icon> -->
+                            <div class="event-title">{{e.name}}</div>
+                            <div class="event-type">{{e.type}}</div>
+                            <div class="event-date">{{e.start_date | date : 'EEEE dd MMM'}}</div>
+                        </div>
+                        <a href="/#/event/{{e.id}}">
+                            <md-icon class="material-icons select-event">send</md-icon>
+                        </a>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list ng-if="user.eventAttended.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <div class="friends-participating-box">
+                        <md-icon class="material-icons">check_circle</md-icon>
+                        <div class="friends-participants">ATTENDED</div>
+                        <div class="participation-status">{{user.eventAttended.length ? user.eventAttended.length : 0}}</div>
+                    </div>
+                    <md-grid-tile class="event-card" md-rowspan="1" md-colspan="2" ng-repeat="e in user.eventAttended">
+                        <img src="{{ADDR_EVENT_IMG}}{{e.main_image}}">
+                        <div class="event-infos">
+                            <!-- <md-icon class="material-icons event-icon">{{e.location.city}}</md-icon> -->
+                            <div class="event-title">{{e.name}}</div>
+                            <div class="event-type">{{e.type}}</div>
+                            <div class="event-date">{{e.start_date | date : 'EEEE dd MMM'}}</div>
+                        </div>
+                        <a href="/#/event/{{e.id}}">
+                            <md-icon class="material-icons select-event">send</md-icon>
+                        </a>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+        <md-tab label="Posts">
+            <div class="profile-content">
+                <div ng-if="user.posts.length == 0" class="not-data-msg">There is no post.</div>
+                <div ng-repeat="(ind, post) in user.posts">
+                    <div class="post-box">
+                        <p style="float: right; font-size: 15px; font-style: italic;">{{post.date_created | date : 'EEEE dd MMM'}}</p>
+                        <p style="content: '';display: block; clear: both;">{{post.body}}</p>
+                        <div style="overflow: auto;">
+                            <ul class="posts-actions">
+                                <li class="post-button">
+                                    <md-tooltip md-direction="top">
+                                        Not implemented yet !
+                                    </md-tooltip>
+                                    <md-icon class="material-icons">star</md-icon>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="post-box" style="margin-top: 0;">
+                        <div>
+                            <img src="{{ADDR_USER_IMG}}{{me.main_image}}" class="connected-user-img">
+                            <md-input-container class="post-comment">
+                                <textarea ng-model="post.msg" max-rows="3" rows="2" md-select-on-focus md-no-autogrow></textarea>
+                            </md-input-container>
+                            <md-icon class="material-icons post-comment-btn" ng-click="addComment(post, post.msg, ind)">send</md-icon>
+                        </div>
+                        <div ng-repeat="coms in user.posts[ind].coms" class="comment-container">
+                            <div class="commenter-infos">
+                                <img src="{{ADDR_USER_IMG}}{{coms.sender.main_image}}" class="commenter-img">
+                                <div class="commenter-name">
+                                    <div>
+                                        {{coms.sender.first_name}} {{coms.sender.last_name}}
+                                    </div>
+                                    <div class="comment-date">{{coms.date_created | date : 'EEEE dd MMM hh:mma'}}</div>
+                                </div>
+                            </div>
+                            <div style="float: right;">
+                                <div ng-click="editComment(coms)" ng-hide="coms.boolEditCom" ng-if="coms.sender.id == me.id" class="material-icons comment-btn edit">edit</div>
+                                <div ng-click="editComment(coms)" ng-show="coms.boolEditCom" ng-if="coms.sender.id == me.id" class="material-icons comment-btn cancel">cancel</div>
+                                <div ng-click="saveEditComment(post, coms)" ng-show="coms.boolEditCom" ng-if="coms.sender.id == me.id" class="material-icons comment-btn edit">save</div>
+                                <div ng-if="coms.sender.id == me.id" ng-click="deleteComment(post.id, coms.id)" class="material-icons comment-btn delete">delete</div>
+                            </div>
+                            <div ng-hide="coms.boolEditCom" class="comment-content">
+                                {{coms.body}}
+                            </div>
+                            <div ng-show="coms.boolEditCom" class="comment-content">
+                                <md-input-container class="post-comment" style="width: 100%;">
+                                    <textarea ng-model="coms.body" max-rows="3" rows="2" md-select-on-focus md-no-autogrow></textarea>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <!-- <div style="text-align:left;">
+                        <div class="btn-all-comments">
+                            View all
+                        </div>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab ng-if="user.is_sponsor != true" label="Badges">
+            <div class="profile-content">
+                <div class="profile-badges-columns">
+                    <div class="user-stats">
+                        <div class="user-badges-box-title">
+                            <md-icon class="material-icons user-badges-icon">donut_large</md-icon>
+                            <div class="user-badge-title">
+                                Overview
+                            </div>
+                        </div>
+                        <div class="canvas-holder">
+                            <label class="chart-title">{{(user.badgesGained / user.badges.length * 100).toFixed(0)}}%</label>
+                            <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-colours="colors" chart-labels="labels" width="300" height="300">
+                            </canvas>
+                        </div>
+                    </div>
+                    <div class="user-badges">
+                        <div class="user-badges-box-title">
+                            <md-icon class="material-icons user-badges-icon">view_comfy</md-icon>
+                            <div class="user-badge-title">
+                                My badges
+                            </div>
+                        </div>
+                        <md-grid-list class="badges-list-grid" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="4" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="15px">
+                            <md-grid-tile ng-repeat="b in user.badges" md-rowspan="1" md-colspan="1">
+                                <img src="{{b.href}}" ng-class="b.gained ? 'badge gained' : 'badge'">
+                            </md-grid-tile>
+                        </md-grid-list>
+                    </div>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab ng-if="user.is_sponsor != true" label="Friends">
+            <div class="profile-content">
+                <div ng-if="friendRequest.length > 0" class="friends-participating-box">
+                    <md-icon class="material-icons">person_add</md-icon>
+                    <div class="friends-participants">REQUESTS</div>
+                    <div class="participation-status">{{friendRequest.length ? friendRequest.length : 0}}</div>
+                </div>
+                <md-list class="fixedRows friends-request-list">
+                    <md-list-item class="md-2-line contact-item" ng-repeat="r in friendRequest">
+                        <!-- | filter:e.demandQuery -->
+                        <img ng-src="{{ADDR_USER_IMG}}{{r.sender.main_image}}" class="md-avatar friend-request-item" alt="{{d.name}}" />
+                        <div class="md-list-item-text friend-request-item">
+                            <h3>{{r.sender.first_name}} {{r.sender.last_name}}</h3>
+                            <p></p>
+                        </div>
+                        <div class="friend-request-item">
+                            <md-icon class="material-icons friend-request-btn" ng-click="accept(r)">done</md-icon>
+                        </div>
+                        <div class="friend-request-item">
+                            <md-icon class="material-icons friend-request-btn" ng-click="refuse(r)">clear</md-icon>
+                        </div>
+                    </md-list-item>
+                </md-list>
+                <div class="not-data-msg" ng-if="user.friends.length == 0 || user.friends == undefined">There is no friends.</div>
+                <div ng-if="user.friends.length > 0" class="friends-participating-box">
+                    <md-icon class="material-icons">people outline</md-icon>
+                    <div class="friends-participants">FRIENDS</div>
+                    <div class="participation-status">{{user.friends.length ? user.friends.length : 0}}</div>
+                </div>
+                <md-input-container ng-if="user.friends.length > 0" md-no-float class="md-block">
+                    <input type="text" placeholder="Search friend">
+                </md-input-container>
+                <md-grid-list class="user-friend-list" md-cols-sm="6" md-cols-md="8" md-cols-gt-md="10" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <md-grid-tile ng-repeat="friend in user.friends" class="user" md-rowspan="1" md-colspan="1">
+                        <md-icon ng-if="user.id == me.id" class="material-icons top-left-button delete-need" ng-click="removeFriend(friend.id)">clear</md-icon>
+                        <img ng-src="{{ADDR_USER_IMG}}{{friend.main_image}}">
+                        <a href="/#/user/{{friend.id}}">
+                            <div class="user-name">
+                                {{friend.first_name}} {{friend.last_name}}
+                            </div>
+                        </a>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+        <md-tab ng-if="user.is_sponsor != true" label="Communities">
+            <div class="profile-content">
+                <div ng-if="user.communities.length == 0 && user.communitiesOwned.length == 0" class="not-data-msg">There is no community.</div>
+                <md-grid-list ng-if="communitiesInvitations.length > 0" class="communities-user-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <div class="friends-participating-box">
+                        <md-icon class="material-icons">drafts</md-icon>
+                        <div class="friends-participants">INVITATIONS</div>
+                        <div class="participation-status">{{communitiesInvitations.length ? communitiesInvitations.length : 0}}</div>
+                    </div>
+                    <md-grid-tile ng-if="user.id == me.id && communitiesInvitations.length > 0" ng-repeat="c in communitiesInvitations" class="community" md-rowspan="1" md-colspan="2">
+                        <img ng-if="c.community.cover_image" src="{{ADDR_COMMUNITY_IMG}}{{c.community.cover_image}}">
+                        <img ng-if="!c.community.cover_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                        <div class="community-infos">
+                            <div class="name">
+                                {{c.community.name}}
+                            </div>
+                            <div class="members">
+
+                            </div>
+                        </div>
+                        <a href="/#/community/{{c.community.id}}">
+                            <md-icon class="material-icons select-community-button">send</md-icon>
+                        </a>
+                        <md-icon class="material-icons select-community-button" ng-click="refuse(c)" style="right:40px;">clear</md-icon>
+                        <md-icon class="material-icons select-community-button" ng-click="accept(c)" style="right:80px;">done</md-icon>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list ng-if="user.communitiesOwned.length > 0" class="communities-user-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <div class="friends-participating-box">
+                        <md-icon class="material-icons">person_outline</md-icon>
+                        <div class="friends-participants">COMMUNITIES</div>
+                        <div class="participation-status">{{user.communitiesOwned.length ? user.communitiesOwned.length : 0}}</div>
+                    </div>
+                    <md-grid-tile ng-if="user.communitiesOwned.length > 0" ng-repeat="c in user.communitiesOwned" class="community" md-rowspan="1" md-colspan="2">
+                        <img ng-if="c.main_image" src="{{ADDR_COMMUNITY_IMG}}{{c.main_image}}">
+                        <img ng-if="!c.main_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                        <div class="community-infos">
+                            <div class="name">
+                                {{c.name}}
+                            </div>
+                            <!-- <div class="members">
+                                {{comu.members.length + 1}} MEMBERS
+                            </div> -->
+                        </div>
+                        <a ng-if="user.id == me.id" href="/#/community/admin/{{c.id}}">
+                            <md-icon class="material-icons select-community-button-adm">security</md-icon>
+                        </a>
+                        <a href="/#/community/{{c.id}}">
+                            <md-icon class="material-icons select-community-button">send</md-icon>
+                        </a>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list ng-if="user.communities.length > 0" class="communities-user-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <div class="friends-participating-box">
+                        <md-icon class="material-icons">share</md-icon>
+                        <div class="friends-participants">MEMBER OF</div>
+                        <div class="participation-status">{{user.communities.length ? user.communities.length : 0}}</div>
+                    </div>
+                    <md-grid-tile ng-if="user.communities.length > 0" ng-repeat="c in user.communities" class="community" md-rowspan="1" md-colspan="2">
+                        <img ng-if="c.cover_image" src="{{ADDR_COMMUNITY_IMG}}{{c.cover_image}}">
+                        <img ng-if="!c.cover_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                        <div class="community-infos">
+                            <div class="name">
+                                {{c.name}}
+                            </div>
+                            <!-- <div class="members">
+                                {{comu.info.members.length + 1}} MEMBERS
+                            </div> -->
+                        </div>
+                        <a href="/#/community/{{c.id}}">
+                            <md-icon class="material-icons select-community-button">send</md-icon>
+                        </a>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+        <md-tab label="Photos">
+            <div class="profile-content">
+                <div ng-if="user.side_images == undefined || user.side_images.length == 0" class="not-data-msg">There is no photos.</div>
+                <md-grid-list class="user-pictures-list" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <md-grid-tile ng-repeat="s in user.side_images" class="user" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2">
+                        <img src="{{ADDR_USER_IMG}}{{s}}">
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+        <!-- To show only when people are looking at a sponsor profile -->
+        <md-tab ng-if="user.is_sponsor == true" label="Sponsorings">
+            <div class="profile-content">
+              <div ng-if="user.pendingSponsoring.length == 0 && user.sponsoredEvents.length == 0" class="not-data-msg">There is no sponred event.</div>
+                <md-grid-list ng-if="user.pendingSponsoring.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <div class="friends-participating-box">
+                        <md-icon class="material-icons">drafts</md-icon>
+                        <div class="friends-participants">PENDINGS</div>
+                        <div class="participation-status">{{user.pendingSponsoring.length}}</div>
+                    </div>
+                    <md-grid-tile ng-repeat="p in user.pendingSponsoring" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2" class="event-card">
+                        <img src="{{ADDR_EVENT_IMG}}{{p.event.main_image}}" class="event-img">
+                        <div class="event-infos">
+                            <div class="event-title">{{p.event.name}}</div>
+                        </div>
+                        <a href="/#/event/{{p.event.id}}">
+                            <md-icon class="material-icons select-event">send</md-icon>
+                        </a>
+                        <md-icon class="material-icons select-event" style="left:0;" ng-click="showSponsoring(p)">pageview</md-icon>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list ng-if="user.sponsoredEvents.length > 0" class="events-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="5:4" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <div class="friends-participating-box">
+                        <md-icon class="material-icons">check</md-icon>
+                        <div class="friends-participants">VALIDATED</div>
+                        <div class="participation-status">{{user.sponsoredEvents.length}}</div>
+                    </div>
+                    <md-grid-tile ng-repeat="e in user.sponsoredEvents" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2" class="event-card">
+                        <img ng-if="e.main_image" src="{{ADDR_EVENT_IMG}}{{e.main_image}}" class="event-img">
+                        <img ng-if="!e.main_image" src="./app/static/img/placeholder-cover.png" class="event-img">
+                        <div class="event-infos">
+                            <div class="event-title">{{e.name}}</div>
+                        </div>
+                        <a href="/#/event/{{e.id}}">
+                            <md-icon class="material-icons select-event">send</md-icon>
+                        </a>
+                        <!-- <md-icon class="material-icons select-event" style="left:0;" ng-click="showSponsoring(e.sponsorships[0])">pageview</md-icon> -->
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+    </md-tabs>
+</div>

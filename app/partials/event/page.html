@@ -1,0 +1,321 @@
+<div class="event-page">
+    <style ng-if="e.main_image">
+        .event-page .event-header:before {
+            background: url('{{ADDR_EVENT_IMG}}{{e.main_image}}') no-repeat top center;
+            background-size: cover;
+            background-position: 50% 35%;
+            background-repeat: no-repeat no-repeat;
+        }
+    </style>
+    <style ng-if="!e.main_image">
+        .event-page .event-header:before {
+            background: url('./app/static/img/placeholder-cover.png') no-repeat top center;
+            background-size: cover;
+            background-position: 50% 35%;
+            background-repeat: no-repeat no-repeat;
+        }
+    </style>
+    <div class="event-header">
+        <div class="event-header-content">
+            <div class="event-name">{{e.name}}</div>
+            <div class="event-header-infos">
+                <div class="event-infos">
+                    <md-icon class="material-icons event-infos-icon">schedule</md-icon>
+                    <div class="event-infos-category">
+                        WHEN
+                    </div>
+                    <div class="event-time-box">
+                        <div class="event-info event-time">{{e.start_date | date : 'EEEE dd MMM h:mma'}}</div>
+                        <div class="event-info event-time">{{e.end_date | date : 'EEEE dd MMM h:mma'}}</div>
+                    </div>
+                </div>
+                <div class="event-infos">
+                    <md-icon class="material-icons event-infos-icon">place</md-icon>
+                    <div class="event-infos-category">
+                        WHERE
+                    </div>
+                    <div class="event-time-box">
+                        <div class="event-info">{{e.location.address}}, {{e.location.city}}, {{e.location.country}}</div>
+                    </div>
+                </div>
+                <div class="event-infos">
+                    <md-icon class="material-icons event-infos-icon">people</md-icon>
+                    <div class="event-infos-category">
+                        WHO
+                    </div>
+                    <div class="event-time-box">
+                        <div class="event-info">{{e.participants.length + 1}} PEOPLE</div>
+                    </div>
+                </div>
+            </div>
+            <a href="/#/event/admin/{{e.id}}" ng-if="user.id == e.creator.id">
+                <md-icon class="material-icons event-special-btn event-adm" style="">settings</md-icon>
+            </a>
+            <a ng-if="user.is_sponsor != true && e.pending != true && e.invited != true" href="/#/event/{{e.id}}/participate">
+                <div ng-if="participate" class="event-action-button event-join" ng-hide="e.participating || e.pending">PARTICIPATE</div>
+            </a>
+            <a ng-if="user.is_sponsor == true" href="/#/event/{{e.id}}/sponsor-participate">
+                <div class="event-action-button event-join" ng-hide="e.sponsored_by_you || e.pending_sponsor">SPONSOR THIS EVENT</div>
+            </a>
+            <!-- <md-icon class="material-icons event-special-btn event-message">mail</md-icon> -->
+        </div>
+    </div>
+    <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+        <md-tab label="Overview">
+            <div class="event-content">
+                <div class="box" ng-show="e.pending || e.invited || e.participating" ng-if="e.creator.id != user.id">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">power_settings_new</md-icon>
+                        <div class="box-title">
+                            Participation status
+                        </div>
+                        <div ng-show="e.pending" class="participation-status">Waiting for acceptation</div>
+                        <div ng-show="e.participating" class="participation-status">Accepted</div>
+                        <div ng-show="e.invited" class="participation-status">You are invited to this event.</div>
+                    </div>
+                    <!-- <div>Don't forget to bring :</div> -->
+                    <div></div>
+                </div>
+                <div class="box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">error_outline</md-icon>
+                        <div class="box-title">
+                            General informations
+                        </div>
+                    </div>
+                    <div class="general-informations-container">
+                        <div class="general-info">
+                            {{e.name}}
+                        </div>
+                    </div>
+                    <div class="general-informations-container">
+                        <div class="general-info">
+                            {{e.type}}
+                        </div>
+                        <div class="general-info">
+                            {{e.location.address}}, {{e.location.city}}, {{e.location.country}}
+                        </div>
+                        <div class="general-info">
+                            {{e.start_date | date : 'EEEE dd MMM h:mma'}}
+                        </div>
+                    </div>
+                    <div class="general-informations-container">
+                        <div class="general-info">
+                            On invitation
+                        </div>
+                        <div class="general-info">
+                            Participation mandatory
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">account_circle</md-icon>
+                        <div class="box-title">
+                            Organiser
+                        </div>
+                    </div>
+                    <a class="event-organiser" href="/#/user/{{e.creator.id}}">
+                        <div class="event-organiser-box">
+                            <img class="user-avatar" src="{{ADDR_USER_IMG}}{{e.creator.main_image}}" />
+                            <div class="user-name">{{e.creator.first_name}} {{e.creator.last_name}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">info</md-icon>
+                        <div class="box-title">
+                            Description
+                        </div>
+                    </div>
+                    {{e.description}}
+                </div>
+                <div ng-if="map.active" class="box">
+                    <div class="box-title-wrapper">
+                        <md-icon class="material-icons">room</md-icon>
+                        <div class="box-title">
+                            Location
+                        </div>
+                    </div>
+                    <div>
+                        <ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options">
+                            <ui-gmap-marker coords="map.location" events="map.events" idkey="map.id"></ui-gmap-marker>
+                        </ui-gmap-google-map>
+                    </div>
+                </div>
+                <!--  If waiting for participate, show status .... -->
+                <!--  If participating, also show what to bring, where to go from house, ticket service .... -->
+                <!--  Infos to show : type, number of participants, map, needs, date begin date end, address, participation policy, organisateur ... -->
+            </div>
+        </md-tab>
+        <md-tab label="Participants">
+            <div class="event-content">
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">people</md-icon>
+                    <div class="friends-participants">ALL PARTICIPANTS</div>
+                    <div class="participation-status waiting">{{e.participants.length + 1}}</div>
+                </div>
+                <md-input-container md-no-float class="md-block">
+                    <input ng-model="participants.query" type="text" placeholder="Search SocialHiver">
+                </md-input-container>
+                <md-grid-list class="event-participants-list" md-cols-sm="6" md-cols-md="10" md-cols-gt-md="10" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="15px">
+                    <md-grid-tile class="user" md-rowspan="1" md-colspan="1">
+                        <img ng-if="e.creator.main_image" src="{{ADDR_USER_IMG}}{{e.creator.main_image}}">
+                        <img ng-if="!e.creator.main_image" src="./app/static/img/placeholder-user.png" />
+                        <div class="user-name">
+                            <a href="/#/user/{{e.creator.id}}" style="color:white">{{e.creator.first_name}} {{e.creator.last_name}}</a>
+                        </div>
+                        <md-icon class="material-icons event-organiser-icn">stars</md-icon>
+                    </md-grid-tile>
+                    <md-grid-tile ng-repeat="p in e.participants | filter:participants.query" class="user" md-rowspan="1" md-colspan="1">
+                        <img ng-if="p.main_image" src="{{ADDR_USER_IMG}}{{p.main_image}}">
+                        <img ng-if="!p.main_image" src="./app/static/img/placeholder-user.png" />
+                        <div class="user-name">
+                            <a href="/#/user/{{p.id}}" style="color:white">{{p.first_name}} {{p.last_name}}</a>
+                        </div>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+        <md-tab label="Needs">
+            <div class="event-content">
+                <div ng-if="!e.needs" class="not-data-msg">
+                    Nothing needed.
+                </div>
+                <div ng-if="e.needs" class="general-progress-container">
+                    <div class="friends-participating-box" style="text-align: center;">
+                        <div class="participation-status">
+                            <md-icon class="material-icons">donut_large</md-icon>
+                            <div class="friends-participants">GENERAL PROGRESS</div>
+                        </div>
+                    </div>
+                    <div class="canvas-holder">
+                        <label class="chart-title">{{e.tNeeds | number:0}}%</label>
+                        <canvas id="doughnut" class="chart chart-doughnut" chart-data="e.needs.chart" chart-colours="colors" chart-labels="labels" height="100px">
+                        </canvas>
+                    </div>
+                </div>
+                <md-grid-list class="event-needs-list" md-cols-sm="2" md-cols-md="6" md-cols-gt-md="6" md-row-height="1:1" md-gutter="15px" md-gutter-gt-sm="15px">
+                    <md-grid-tile md-rowspan="1" md-colspan="2" class="need-box" ng-repeat="n in e.needs">
+                        <div style="display: flex; width: 100%;">
+                            <div class="need-content">
+                                <div class="need-name">
+                                    {{n.name}}</div>
+                                <div ng-if="n.description != 'undefined' && n.description != undefined" class="need-description">
+                                    {{n.description}}
+                                </div>
+                            </div>
+                            <div class="need-chart">
+                                <canvas id="doughnut" class="chart chart-doughnut chart-overload" chart-data="n.chart" chart-colours="colors" chart-labels="labels" chart-options="options">
+                                </canvas>
+                                <div class="need-quantity">{{n.acquired}}/{{n.quantity}}</div>
+                            </div>
+                        </div>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+        <md-tab label="Posts">
+            <div class="event-content">
+                <div ng-if="e.posts.length == 0" class="not-data-msg">There is no post for this event.</div>
+                <div ng-repeat="(ind, post) in e.posts">
+                    <div class="post-box">
+                        <p style="float: right; font-size: 15px; font-style: italic;">{{post.date_created | date : 'EEEE dd MMM'}}</p>
+                        <p style="content: '';display: block; clear: both;">{{post.body}}</p>
+                        <div style="overflow: auto;">
+                            <ul class="posts-actions">
+                                <li class="post-button">
+                                    <md-tooltip md-direction="top">
+                                        Not implemented yet !
+                                    </md-tooltip>
+                                    <md-icon class="material-icons">star</md-icon>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="post-box" style="margin-top: 0;">
+                        <div>
+                            <img src="{{ADDR_USER_IMG}}{{user.main_image}}" class="connected-user-img">
+                            <md-input-container class="post-comment">
+                                <textarea ng-model="post.msg" max-rows="3" rows="2" md-select-on-focus md-no-autogrow></textarea>
+                            </md-input-container>
+                            <md-icon class="material-icons post-comment-btn" ng-click="addComment(post, post.msg, ind)">send</md-icon>
+                        </div>
+                        <div ng-repeat="coms in e.posts[ind].coms" class="comment-container">
+                            <div class="commenter-infos">
+                                <img src="{{ADDR_USER_IMG}}{{coms.sender.main_image}}" class="commenter-img">
+                                <div class="commenter-name">
+                                    <div>
+                                        {{coms.sender.first_name}} {{coms.sender.last_name}}
+                                    </div>
+                                    <div class="comment-date">{{coms.date_created | date : 'EEEE dd MMM hh:mma'}}</div>
+                                </div>
+                            </div>
+                            <div style="float: right;">
+                                <div ng-click="editComment(coms)" ng-hide="coms.boolEditCom" ng-if="coms.sender.id == user.id" class="material-icons comment-btn edit">edit</div>
+                                <div ng-click="editComment(coms)" ng-show="coms.boolEditCom" ng-if="coms.sender.id == user.id" class="material-icons comment-btn cancel">cancel</div>
+                                <div ng-click="saveEditComment(post, coms)" ng-show="coms.boolEditCom" ng-if="coms.sender.id == user.id" class="material-icons comment-btn edit">save</div>
+                                <div ng-if="coms.sender.id == user.id" ng-click="deleteComment(post.id, coms.id)" class="material-icons comment-btn delete">delete</div>
+                                <!--
+                                <div ng-if="coms.sender.id == user.id" class="material-icons comment-btn edit">edit</div>
+                                <div ng-if="coms.sender.id == user.id" ng-click="deleteComment(post.id, coms.id)" class="material-icons comment-btn delete">delete</div> -->
+                            </div>
+                            <div ng-hide="coms.boolEditCom" class="comment-content">
+                                {{coms.body}}
+                            </div>
+                            <div ng-show="coms.boolEditCom" class="comment-content">
+                                <md-input-container class="post-comment" style="width: 100%;">
+                                    <textarea ng-model="coms.body" max-rows="3" rows="2" md-select-on-focus md-no-autogrow></textarea>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab label="Photos">
+            <div class="event-content">
+                <div ng-if="e.side_images == undefined || e.side_images.length == 0" class="not-data-msg">These is no images for this event.</div>
+                <md-grid-list class="event-pictures-list" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="16px">
+                    <md-grid-tile ng-repeat="i in e.side_images" class="picture" md-rowspan="1" md-colspan="2" md-colspan-sm="2" md-colspan-xs="2">
+                        <img src="{{ADDR_EVENT_IMG}}{{i}}">
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+        <md-tab label="Sponsors">
+            <div ng-if="e.sponsorships.length == 0 || !e.sponsorships" class="event-content">
+                <div class="not-data-msg">There is no sponsors.</div>
+            </div>
+            <div ng-repeat="s in e.sponsorships" class="event-content">
+                <div class="sponsor-cover-container">
+                    <a href="/#/user/{{s.sponsor.id}}">
+                        <img src="{{ADDR_USER_IMG}}{{s.sponsor.main_image}}" class="sponsor-cover-img" />
+                        <a class="sponsor-infos-container" href="/#/user/{{s.sponsor.id}}">
+                            <div class="sponsor-info">
+                                <div class="name">
+                                    {{s.sponsor.first_name}}
+                                </div>
+                            </div>
+                        </a>
+                    </a>
+                </div>
+                <div class="sponsor-contributions-container">
+                    <div style="text-align: center; font-size: 25px; font-weight: 200;">
+                        Thanks to our sponsor, who provided
+                    </div>
+                    <md-list flex>
+                        <md-list-item ng-repeat="n in s.contribution" class="md-2-line" ng-click="null">
+                            <div class="md-list-item-text" layout="column">
+                                {{n.name}}
+                            </div>
+                            <div>
+                                {{n.quantity}}
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+        </md-tab>
+</div>

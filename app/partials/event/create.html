@@ -1,0 +1,210 @@
+<div class="loading-bar-container" ng-show="progress">
+    <md-progress-circular md-mode="indeterminate" class="loading-bar" md-diameter="70"></md-progress-circular>
+</div>
+<div class="event-page">
+    <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+        <md-tab label="Informations">
+            <div class="event-content">
+                <div style="margin:16px;">
+                    <form>
+                        <div class="box">
+                            <div style="height: 250px">
+                              <div class="event-create-box-title" ng-show="!picFile">
+                                  <md-icon class="material-icons box-title-icn">insert_photo</md-icon>
+                                  <div class="title">Cover Picture</div>
+                              </div>
+                              <img-crop image="picFile  | ngfDataUrl" result-image="event.croppedDataUrl" result-image-size="{w:1280,h:548}" area-type="rectangle" result-image-quality "1" aspect-ratio="21/9"></img-crop>
+                            </div>
+                            <md-icon class="material-icons top-left-button" ngf-select ng-model="picFile" file-model="myFile" accept="image/*">insert_photo</md-icon>
+                        </div>
+                        <div class="box">
+                            <div class="event-create-box-title">
+                                <md-icon class="material-icons box-title-icn">event_note</md-icon>
+                                <div class="title">General informations</div>
+                            </div>
+                            <md-content class="md-padding">
+                                <div layout="column">
+                                    <md-input-container>
+                                        <label>Name</label>
+                                        <input ng-model="event.name" required type="text">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>Description</label>
+                                        <textarea ng-model="event.description" md-maxlength="400" max-rows="4" rows="4" md-select-on-focus md-no-autogrow></textarea>
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>Community</label>
+                                        <md-select ng-model="event.community" class="sh-selector" style="display: inline-block;vertical-align:middle;">
+                                            <md-option value="">
+                                            </md-option>
+                                            <md-option ng-repeat="t in user.communitiesOwned" value="{{t.id}}">
+                                                {{t.name}}
+                                            </md-option>
+                                        </md-select>
+                                        <div style="display: inline; vertical-align:middle;">
+                                            <md-tooltip md-direction="right" style="font-size: 14px;">
+                                                Optional: You can organise an event on behalf of a community.
+                                            </md-tooltip>
+                                            <div class="ion-help-circled create-event-helper" />
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </md-content>
+                        </div>
+                        <div class="box">
+                            <div class="event-create-box-title">
+                                <md-icon class="material-icons box-title-icn">place</md-icon>
+                                <div class="title">Location</div>
+                            </div>
+                            <md-content class="md-padding">
+                                <div layout="column">
+                                    <md-input-container>
+                                        <label>Adress</label>
+                                        <input ng-model="event.location.address" required type="text">
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>City</label>
+                                        <input ng-model="event.location.city" required type="text">
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Country</label>
+                                        <input ng-model="event.location.country" required type="text">
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Zip</label>
+                                        <input ng-model="event.location.zip" required type="text">
+                                    </md-input-container>
+
+                                </div>
+                            </md-content>
+                        </div>
+                        <div class="box">
+                            <div class="event-create-box-title">
+                                <md-icon class="material-icons box-title-icn">visibility</md-icon>
+                                <div class="title">Type and privacy</div>
+                            </div>
+                            <md-content class="md-padding">
+                                <div layout="column">
+                                    <md-input-container>
+                                        <label>Type</label>
+                                        <md-select ng-model="event.type" class="sh-selector">
+                                            <md-option ng-repeat="t in types" value="{{t}}">
+                                                {{t}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                </div>
+                                <div layout layout-padding layout-align="space-around center">
+                                    <md-checkbox ng-model="event.private" aria-label="Checkbox 1" class="sh-selector">Private</md-checkbox>
+                                    <!-- <md-checkbox ng-model="event.free" aria-label="Checkbox 1" class="sh-selector">Free Invitation</md-checkbox>
+                                    <md-checkbox ng-model="event.participation" aria-label="Checkbox 1" class="sh-selector">Participation Mandatory</md-checkbox> -->
+                                </div>
+
+                            </md-content>
+                        </div>
+                        <div class="box">
+                            <div class="event-create-box-title">
+                                <md-icon class="material-icons box-title-icn">watch_later</md-icon>
+                                <div class="title">Time</div>
+                            </div>
+                            <md-content class="md-padding">
+                                <div layout="column" layout-align="center center">
+                                    <div layout layout-padding layout-align="space-around center">
+                                        <md-input-container>
+                                            <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime" placeholder="Start" min-date="now" ng-model="event.date" class="md-input" style="cursor: pointer;">
+                                        </md-input-container>
+                                        <md-input-container>
+                                            <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime" placeholder="End" min-date="event.date" ng-model="event.end" class="md-input" style="cursor: pointer;" ng-disabled="!event.date">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab label="Needs">
+            <div class="event-content">
+                <md-grid-list class="event-needs-list" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height="200px" md-gutter="15px" md-gutter-gt-sm="15px">
+                    <md-grid-tile md-rowspan="1" md-colspan="2" class="adm-box" ng-repeat="(index, n) in event.needs">
+                        <div class="adm-need-container">
+                            <div class="adm-needs">
+                                <md-input-container md-no-float style="width:100%;display: inline-block; margin: 10px 0;">
+                                    <input ng-model="n.name" required type="text" aria-label="Name of need"  placeholder="Name">
+                                </md-input-container>
+                                <md-input-container md-no-float style="display: inline-block; margin: 10px 0; max-width: 80px;">
+                                    <input ng-model="n.quantity" min="1" required type="number" aria-label="Quantity" placeholder="Quantity" style="text-align: center;">
+                                </md-input-container>
+                            </div>
+                            <div class="adm-needs">
+                                <md-input-container md-no-float style="width: 100%; margin: 10px 0 0 0;">
+                                    <textarea ng-model="n.description" md-maxlength="85" max-rows="2" rows="2" md-select-on-focus="" aria-label="Description" placeholder="Description" md-no-autogrow></textarea>
+                                </md-input-container>
+
+                            </div>
+                            <!-- <div>
+                                <md-checkbox ng-model="n.optional" aria-label="optional" class="sh-selector">Mandatory</md-checkbox>
+                            </div> -->
+                        </div>
+                        <md-icon ng-click="removeNeed(index)" class="material-icons top-left-button delete-need">clear</md-icon>
+
+                    </md-grid-tile>
+                    <md-grid-tile md-rowspan="1" md-colspan="2" class="adm-box">
+                        <md-icon class="material-icons adm-top-icon" ng-click="addNeed()">add</md-icon>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </md-tab>
+        <md-tab label="Participants">
+            <div class="event-content">
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">mail</md-icon>
+                    <div class="friends-participants">PENDING INVITATIONS</div>
+                    <div class="participation-status">0</div>
+                </div>
+                <md-input-container md-no-float class="md-block">
+                    <input ng-model="invite.query" type="text" placeholder="Search SocialHiver">
+                </md-input-container>
+                <md-list class="fixedRows">
+                  <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in guests">
+                    <!-- <md-list-item class="md-2-line contact-item" ng-repeat="contact in allContacts | filter:!contact.sent"> -->
+                        <img ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" class="md-avatar" alt="{{contact.name}}" />
+                        <div class="md-list-item-text compact adm-inline">
+                            <h3>{{contact.first_name}} {{contact.last_name}}</h3>
+                            <p></p>
+                        </div>
+                        <div class="adm-inline">
+                            <md-icon class="material-icons user-action-btn" ng-click="removeFromGuests(index)">close</md-icon>
+                        </div>
+                    </md-list-item>
+                </md-list>
+                <div class="not-data-msg" ng-if="guest.length == 0">No pending invitation.</div>
+                <div class="friends-participating-box">
+                    <md-icon class="material-icons">mail</md-icon>
+                    <div class="friends-participants">NEW INVITATIONS</div>
+                </div>
+                <md-input-container md-no-float class="md-block">
+                    <input ng-model="invite.query" type="text" placeholder="Search SocialHiver">
+                </md-input-container>
+                <md-list class="fixedRows">
+                    <md-list-item class="md-2-line contact-item" ng-hide="contact.sent || contact.id == user.id" ng-repeat="contact in allContacts | filter:invite.query | filter:sponsorFilter">
+                        <img ng-src="{{ADDR_USER_IMG}}{{contact.main_image}}" class="md-avatar" alt="{{contact.name}}" />
+                        <div class="md-list-item-text compact adm-inline">
+                            <h3 style="display:inline">{{contact.first_name}}</h3> <h3 ng-if="!contact.is_sponsor" style="display:inline">{{contact.last_name}}</h3>
+                            <p></p>
+                        </div>
+                        <div class="adm-inline">
+                            <md-icon class="material-icons user-action-btn" ng-click="guests.push(contact);contact.sent=true">add</md-icon>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </md-tab>
+    </md-tabs>
+    <md-icon class="material-icons create-event" ng-click="create()">save</md-icon>
+</div>

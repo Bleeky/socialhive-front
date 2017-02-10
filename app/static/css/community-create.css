@@ -1,0 +1,264 @@
+.community-page .community-content .box {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    margin: 20px 0px 20px 0px;
+    position: relative;
+    padding: 15px;
+}
+
+.community-page .community-content .box.profile {
+    width: 40%;
+    margin: auto;
+}
+
+.community-page .community-content .box.profile .current-img {
+    max-height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.community-page .community-content .sh-selector .md-icon {
+    border-radius: 50%;
+}
+
+.community-page md-checkbox.md-checked .md-icon {
+    background-color: #ff9800;
+}
+
+.community-page md-tabs .md-active .sh-selector span {
+    color: rgba(0, 0, 0, .5);
+}
+
+.community-page textarea[md-no-autogrow].md-input {
+    height: inherit;
+    overflow-y: auto;
+}
+
+.community-page .community-create-box-title {
+    text-align: center;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-create-box-title .title {
+    display: inline;
+    vertical-align: middle;
+    line-height: 25px;
+    font-weight: 200;
+    font-size: 25px;
+}
+
+.community-page .community-create-box-title .box-title-icn {
+    font-size: 25px;
+    display: inline;
+    vertical-align: middle;
+    max-width: 25px;
+    max-height: 25px;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .box:hover .box-title-icn {
+    color: rgba(255, 152, 0, 0.65);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .box:hover .title {
+    color: rgba(255, 152, 0, 0.65);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-content .top-left-button {
+    top: -10px;
+    left: -10px;
+    position: absolute;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: #b3b3b3;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-content .top-left-button:hover {
+    color: #ff9800;
+    background-color: #e1e1e1;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-content .cover-picture {
+    height: 200px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.community-page .community-content .img-picker-container {
+    position: relative;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.community-page .community-content .img-picker-container .img-picker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #b3b3b3;
+    color: white;
+    z-index: 900;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-content .img-picker-container img-crop canvas {
+    border-radius: 50%;
+}
+
+.community-page .community-content .img-picker-container .img-picker:hover {
+    background-color: #e1e1e1;
+    color: #ff9800;
+}
+
+.community-page .create-community {
+    top: 88px;
+    right: 88px;
+    position: fixed;
+    background: #ff9800;
+    color: white;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 880px) {
+    .community-page .create-community {
+        top: auto;
+        right: auto;
+        position: relative;
+        display: flex;
+        margin-bottom: 25px;
+    }
+}
+
+.community-page .create-community:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-content .community-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto;
+}
+
+.community-page .community-content .user-action-btn {
+    color: white;
+    margin-left: 5px;
+    padding: 10px;
+    background-color: #b3b3b3;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-content .user-action-btn:hover {
+    color: #ff9800;
+    background-color: #e1e1e1;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-content .friends-participating-box {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.community-page .community-content .friends-participants {
+    line-height: 17px;
+    font-size: 17px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.community-page .community-content .participation-status {
+    cursor: default;
+    border-radius: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 32px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, .3);
+}

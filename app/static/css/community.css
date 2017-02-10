@@ -1,0 +1,60 @@
+.community-page .community-cover .community-special-btn.community-adm {
+    left: 10px;
+}
+
+.community-page .community-cover .community-special-btn {
+    top: 10px;
+    position: absolute;
+    background: #ff9800;
+    color: white;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.community-page .community-cover .community-special-btn:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.community-page .community-cover .community-special-btn.community-message {
+    right: 10px;
+}
+
+.community-page .community-content .communities-users-list .community-adm-icn {
+    position: absolute;
+    top: -15px;
+    bottom: 0;
+    left: 0;
+    right:0;
+    margin: 0 auto;
+    color: white;
+    background-color: #ff9800;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 3px;
+}

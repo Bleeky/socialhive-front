@@ -1,0 +1,45 @@
+<md-dialog class="modal-create" aria-label="Create Event">
+  <form layout="column" layout-align="center center">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Ask to take part</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon class="material-icon" aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content class="modal-create-dialog">
+      <md-input-container>
+        <label>Message</label>
+        <input ng-model="ask.message" type="text">
+      </md-input-container>
+      <div layout="row">
+        <div>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Participation</label>
+            <md-select ng-model="ask.tmp_need">
+              <md-option ng-repeat="n in needs" value="{{n.name}}">
+                {{n.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <div>
+          <md-input-container>
+            <label>Quantity</label>
+            <input ng-model="ask.tmp_quantity" type="number">
+          </md-input-container>
+        </div>
+        <div>
+          <md-button ng-click="addParticipation()" class="md-raised md-primary">Add</md-button>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="center center">
+      <span flex></span>
+      <md-button ng-click="submit()" class="md-raised md-primary">Create</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

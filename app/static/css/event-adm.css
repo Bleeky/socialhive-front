@@ -1,0 +1,278 @@
+.event-page .event-content .event-adm-needs-list {
+    position: relative;
+    margin: 16px;
+}
+
+.event-page .event-content .adm-top-container {
+    text-align: center;
+    margin: 16px;
+}
+
+.event-page .event-content .adm-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto;
+}
+
+.event-page .event-content .adm-top-icon {
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .adm-top-icon:hover {
+    color: #ff9800;
+    background-color: rgba(0, 0, 0, .1);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .adm-cover-picture {
+    height: 250px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.event-page .event-content .top-left-button {
+    top: -10px;
+    left: -10px;
+    position: absolute;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    line-height: 20px;
+    color: white;
+    padding: 10px;
+    outline: 0;
+    background-color: #b3b3b3;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .top-left-button:hover {
+    color: #ff9800;
+    background-color: #e1e1e1;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .top-left-button.delete-need {
+    top: -10px;
+    left: -10px;
+    width: 10px;
+    height: 10px;
+    min-height: 10px;
+    min-width: 10px;
+    font-size: 10px;
+    line-height: 10px;
+    background-color: rgb(250, 128, 114);
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .top-left-button.delete-need:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .user-action-btn {
+    color: white;
+    margin-left: 5px;
+    padding: 10px;
+    background-color: #b3b3b3;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .user-action-btn:hover {
+    color: #ff9800;
+    background-color: #e1e1e1;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .sh-selector .md-icon {
+    border-radius: 50%;
+}
+
+.event-page md-checkbox.md-checked .md-icon {
+    background-color: #ff9800;
+}
+
+.event-page md-tabs .md-active .sh-selector span {
+    color: rgba(0, 0, 0, .5);
+}
+
+.event-page textarea[md-no-autogrow].md-input {
+    height: inherit;
+    overflow-y: auto;
+}
+
+.event-page .event-content .event-adm-posts-list {
+    position: relative;
+    margin: 16px;
+}
+
+.event-page .event-content .adm-action-btn-in {
+    position: absolute;
+    color: white;
+    top: 10px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    min-height: 10px;
+    font-size: 10px;
+    line-height: 10px;
+    padding: 10px;
+    outline: 0;
+    border-radius: 50%;
+    z-index: 900;
+    overflow: visible !important;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .adm-action-btn-in:hover {
+    color: #000;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.event-page .event-content .event-adm-posts-list .adm-action-btn-in.remove-post {
+    left: 10px;
+    background-color: rgb(250, 128, 114);
+}
+
+.event-page .event-content .event-adm-posts-list .adm-action-btn-in.edit-post {
+    left: 45px;
+    background-color: rgb(60, 179, 113);
+}
+
+.event-page .event-content .event-adm-posts-list .adm-action-btn-in.edit-coments {
+    left: 80px;
+    background-color: rgb(135, 206, 235);
+}
+
+.event-page .event-content .adm-box {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.event-page .event-content .event-adm-posts-list .adm-post-date {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 13px;
+    font-style: italic;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    padding: 8px;
+}
+
+.event-page .event-content .event-adm-posts-list .adm-post-title {
+    padding: 15px;
+    text-align: center;
+}
+
+.event-page .event-content .event-adm-pictures-list {
+    position: relative;
+    margin: 16px;
+}
+
+.event-page .event-content .event-adm-pictures-list .picture {
+    text-align: center;
+    background: #000;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.event-page .event-content .event-adm-pictures-list .picture img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    opacity: .5;
+    position: relative;
+}
+
+.event-page .event-content .event-adm-pictures-list .picture:hover img {
+    -moz-transform: scale(1.07, 1.07);
+    -ms-transform: scale(1.07, 1.07);
+    -webkit-transform: scale(1.07, 1.07);
+    transform: scale(1.07, 1.07);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.event-page .event-content .event-adm-pictures-list .adm-action-btn-in.remove-pic {
+    background-color: rgb(250, 128, 114);
+}
+
+.event-page .event-content .adm-need-container {
+    padding: 0 15px;
+    text-align: center;
+}
+
+.event-page .event-content .adm-need-container .adm-needs {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}

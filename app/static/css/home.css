@@ -1,0 +1,231 @@
+.event-cover {
+    color: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.event-cover .name-separation {
+    border: 0;
+    height: 1px;
+    width: 50%;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+.event-cover .event-name {
+    font-weight: 400;
+}
+
+.event-cover .event-infos {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 5px;
+}
+
+.event-cover .event-infos .event-infos-icon {
+    color: #ff9800;
+    height: 15px;
+    width: 15px;
+    font-size: 15px;
+    color: white;
+    margin-right: 5px;
+}
+
+.event-cover .event-infos-field {
+    font-size: 15px;
+    line-height: 15px
+}
+
+.home-events-list {
+    position: relative;
+    margin: 16px;
+}
+
+@media screen and (min-width: 960px) {
+    .home-events-list {
+        margin-left: 10em;
+        margin-right: 10em;
+    }
+}
+
+.home-events-list .event {
+    overflow: hidden;
+    background-color: #000;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.home-events-list .select-event-button {
+    right: 0;
+    bottom: 0;
+    color: #546E7A;
+    position: absolute;
+    padding: 10px;
+    margin: 15px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.home-events-list .select-event-button:hover {
+    background: #ECEFF1;
+    color: #ff9800;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.home-events-list .event-organiser {
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .60);
+    position: absolute;
+    margin: 15px;
+    color: white;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.home-events-list .event-status {
+    top: 0;
+    left: 0;
+    color: #ff3300;
+    position: absolute;
+    margin: 15px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.home-events-list .save-event {
+    top: 0;
+    right: 0;
+    color: #000;
+    position: absolute;
+    margin: 15px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.home-events-list .event-organiser:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: #000;
+}
+
+a.home-events-list .event-organiser:hover {
+    color: #000;
+}
+
+.home-events-list .event-organiser .user-avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.home-events-list .event-organiser .user-name {
+    line-height: 50px;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+@media screen and (min-width: 960px) and (max-width: 1200px) {
+    .home-events-list .event-organiser {
+        display: none;
+    }
+    .event-cover {
+        padding: 0 70px 0 70px;
+    }
+    .event-cover .event-name {
+        font-weight: 400;
+        font-size: 20px;
+    }
+    .event-cover .event-infos-field {
+        font-size: 13px;
+    }
+}
+
+.home-events-list .event:hover .cover-picture {
+    -moz-transform: scale(1.27, 1.27);
+    -ms-transform: scale(1.27, 1.27);
+    -webkit-transform: scale(1.27, 1.27);
+    transform: scale(1.27, 1.27);
+    -webkit-transition: 1.2s all ease;
+    - transition: 1.2s all ease;
+    transition: 1.2s all ease;
+}
+
+.home-events-list .event .cover-picture {
+    -moz-transform: scale(1.2, 1.2);
+    -ms-transform: scale(1.2, 1.2);
+    -webkit-transform: scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+    opacity: 0.3;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    /*min-height: 100%;*/
+    -webkit-transition: 0.5s all ease;
+    - transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.filters {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    background-color: #3cb371;
+    z-index: 2;
+    -moz-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    font-size: 25px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 880px) {
+    .filters {
+        top: 125px;
+    }
+}
+
+.filters:hover {
+    color: black;
+}
+
+md-switch.md-default-theme.md-checked .md-ink-ripple, md-switch.md-checked .md-ink-ripple {
+    color: #3cb371;
+}
+
+md-switch.md-default-theme.md-checked .md-thumb, md-switch.md-checked .md-thumb {
+    background-color: #3cb371;
+}
+
+md-switch.md-default-theme.md-checked .md-bar, md-switch.md-checked .md-bar {
+    background-color: rgba(60, 179, 113, 0.5);
+}
